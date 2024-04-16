@@ -2,6 +2,9 @@
 toc: false
 sql:
   fieldstation: ./data/noyo-fieldstation.csv
+  fieldstationSurface: ./data/noyo-fieldstation-surface.csv
+  fieldstationBottom: ./data/noyo-fieldstation-bottom.csv
+theme: "cotton"
 ---
 
 <style>
@@ -55,6 +58,8 @@ const lattitude = 39.42604167897769
   <h1>Hello, Noyo Harbor</h1>
 </div>
 
+//Plot.lineY(topsal, {x: "Date", y: "Value", tip: true})
+
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
   <div class="card">${
     resize((width) => Plot.plot({
@@ -64,8 +69,15 @@ const lattitude = 39.42604167897769
 	  x: {type: "time", domain: [new Date(2024, 1, 1), new Date(2024, 3, 10)], grid: true},
       y: {grid: true, label: "Salinity (g/kg)"},
       marks: [
+        () => htl.svg`<defs>
+          <linearGradient id="gradient" gradientTransform="rotate(90)">
+          <stop offset="15%" stop-color="purple" />
+          <stop offset="75%" stop-color="red" />
+          <stop offset="100%" stop-color="gold" />
+          </linearGradient>
+        </defs>`,
         Plot.ruleY([0]),
-        Plot.lineY(topsal, {x: "Date", y: "Value", tip: true})
+		Plot.areaY(topsal, {x: "Date", y: "Value", fillOpacity: 1.0, fill: "url(#gradient)"})
       ]
     }))
   }</div>
@@ -96,6 +108,8 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 ```js
 const topsal = await sql`SELECT Value, strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstation where \"Series Name\" = 'Surface Salinity'`
+
+const botdep = await sql`SELECT Value, strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Depth' AND date_sub('day', Date, current_date) < 7`
 ```
 
 ```sql
@@ -105,4 +119,43 @@ select strptime(Timestamp, '%Y-%m-%d %H:%M'), Value from fieldstation where \"Se
 
 ```js
 display(topsal);
+
+const harborOffset = 5
 ```
+
+<div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Tide Depth",
+      subtitle: "Don't know the offset",
+      width,
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "Depth (m)"},
+      marks: [
+        Plot.ruleY([0]),
+		Plot.areaY(botdep, {x: "Date", y: (d) => d.Value + harborOffset, fillOpacity: 1.0})
+      ]
+    }))
+  }</div>
+</div>
+
+<div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Tide Depth 2",
+      subtitle: "Don't know the offset 2",
+      width,
+	  x: {type: "time", domain: [new Date(2024, 3, 7), new Date(2024, 3, 14)], grid: true},
+      y: {grid: true, label: "Depth (m)"},
+      marks: [
+        Plot.ruleY([0]),
+		Plot.areaY(botdep, {x: "Date", y: "Value", fill: (d) => svg`
+          <linearGradient id="water${d.Date}" gradientTransform="rotate(90)">
+          <stop offset="15%" stop-color="blue" />
+          <stop offset="${d.i}" stop-color="aqua" />
+          <stop offset="100%" stop-color="green" />
+          </linearGradient>`})
+      ]
+    }))
+  }</div>
+</div>
