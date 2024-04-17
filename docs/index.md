@@ -1,7 +1,6 @@
 ---
 toc: false
 sql:
-  fieldstation: ./data/noyo-fieldstation.csv
   fieldstationSurface: ./data/noyo-fieldstation-surface.csv
   fieldstationBottom: ./data/noyo-fieldstation-bottom.csv
 theme: "cotton"
@@ -49,91 +48,50 @@ theme: "cotton"
 
 </style>
 
-```js
-const longitude = -123.80366406257751
-const lattitude = 39.42604167897769
-```
-
 <div class="hero">
   <h1>Hello, Noyo Harbor</h1>
 </div>
 
-//Plot.lineY(topsal, {x: "Date", y: "Value", tip: true})
-
-<div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Surface salinity",
-      subtitle: "Salt water sinks",
-      width,
-	  x: {type: "time", domain: [new Date(2024, 1, 1), new Date(2024, 3, 10)], grid: true},
-      y: {grid: true, label: "Salinity (g/kg)"},
-      marks: [
-        () => htl.svg`<defs>
-          <linearGradient id="gradient" gradientTransform="rotate(90)">
-          <stop offset="15%" stop-color="purple" />
-          <stop offset="75%" stop-color="red" />
-          <stop offset="100%" stop-color="gold" />
-          </linearGradient>
-        </defs>`,
-        Plot.ruleY([0]),
-		Plot.areaY(topsal, {x: "Date", y: "Value", fillOpacity: 1.0, fill: "url(#gradient)"})
-      ]
-    }))
-  }</div>
-</div>
-
 ```js
-//const forecast = FileAttachment("./data/weather.json").json();
-```
+const topsal = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationSurface where \"Series Name\" = 'Surface Salinity' AND date_sub('day', Date, current_date) < 14`
+const topDO = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationSurface where \"Series Name\" = 'Surface DO' AND date_sub('day', Date, current_date) < 14`
+const topTEMP = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationSurface where \"Series Name\" = 'Surface Temp' AND date_sub('day', Date, current_date) < 14`
+const topCHLA = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationSurface where \"Series Name\" = 'Surface Chl-a' AND date_sub('day', Date, current_date) < 14`
+const topPH = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationSurface where \"Series Name\" = 'Surface pH' AND date_sub('day', Date, current_date) < 14`
 
-```js
-//display(forecast);
-```
+const botsal = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Bottom Salinity' AND date_sub('day', Date, current_date) < 14`
+const botDO = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Bottom DO' AND date_sub('day', Date, current_date) < 14`
+const botTEMP = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Bottom Temp' AND date_sub('day', Date, current_date) < 14`
 
-```js
-const div = display(document.createElement("div"));
-div.style = "height: 400px;";
-
-const map = L.map(div)
-  .setView([lattitude, longitude], 16);
-
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-})
-  .addTo(map);
-  
-//L.geoJSON(forecast.geometry).addTo(map);
-```
-
-```js
-const topsal = await sql`SELECT Value, strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstation where \"Series Name\" = 'Surface Salinity'`
-
-const botdep = await sql`SELECT Value, strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Depth' AND date_sub('day', Date, current_date) < 7`
-```
-
-```sql
-select strptime(Timestamp, '%Y-%m-%d %H:%M'), Value from fieldstation where \"Series Name\" = 'Surface Salinity';
-```
-
-
-```js
-display(topsal);
-
-const harborOffset = 5
+const botdep = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date from fieldstationBottom where \"Series Name\" = 'Depth' AND date_sub('day', Date, current_date) < 14`
 ```
 
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
   <div class="card">${
     resize((width) => Plot.plot({
-      title: "Tide Depth",
-      subtitle: "Don't know the offset",
+      title: "Harbor Depth",
+      subtitle: "Measured at Field Station",
       width,
 	  x: {type: "time", grid: true},
-      y: {grid: true, label: "Depth (m)"},
+      y: {grid: true, label: "Depth (f)"},
+      marks: [
+	    Plot.ruleY([0]),
+		Plot.lineY(botdep, {x: "Date", y: (d) => d.Value - d.Offset, stroke: "steelblue"})
+      ]
+    }))
+  }</div>
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Salinity",
+      subtitle: "Measured at Field Station Surface/Bottom",
+      width,
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "Salinity (g/kg)"},
       marks: [
         Plot.ruleY([0]),
-		Plot.areaY(botdep, {x: "Date", y: (d) => d.Value + harborOffset, fillOpacity: 1.0})
+        Plot.ruleY([35], {stroke: "LightSeaGreen", strokeWidth: 2}),
+		Plot.lineY(botsal, {x: "Date", y: "Value", stroke: "mediumblue"}),
+		Plot.lineY(topsal, {x: "Date", y: "Value", stroke: "darkturquoise"})
       ]
     }))
   }</div>
@@ -142,19 +100,52 @@ const harborOffset = 5
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
   <div class="card">${
     resize((width) => Plot.plot({
-      title: "Tide Depth 2",
-      subtitle: "Don't know the offset 2",
+      title: "Disolved Oxygen",
+      subtitle: "Measured at Field Station Top Surface/Bottom",
       width,
-	  x: {type: "time", domain: [new Date(2024, 3, 7), new Date(2024, 3, 14)], grid: true},
-      y: {grid: true, label: "Depth (m)"},
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "Disolved Oxygen (mg/L)", domain: [7, 12.5]},
       marks: [
-        Plot.ruleY([0]),
-		Plot.areaY(botdep, {x: "Date", y: "Value", fill: (d) => svg`
-          <linearGradient id="water${d.Date}" gradientTransform="rotate(90)">
-          <stop offset="15%" stop-color="blue" />
-          <stop offset="${d.i}" stop-color="aqua" />
-          <stop offset="100%" stop-color="green" />
-          </linearGradient>`})
+		Plot.lineY(topDO, {x: "Date", y: "Value", stroke: "darkturquoise"}),
+		Plot.lineY(botDO, {x: "Date", y: "Value", stroke: "mediumblue"})
+      ]
+    }))
+  }</div>
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Water Temperature",
+      subtitle: "Measured at Field Station Surface/Bottom",
+      width,
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "℉", domain: [45, 60]},
+      marks: [
+		Plot.lineY(topTEMP, {x: "Date", y: (d) => (d.Value * 9 / 5)+32, stroke: "skyblue"}),
+		Plot.lineY(botTEMP, {x: "Date", y: (d) => (d.Value * 9 / 5)+32, stroke: "mediumblue"})
+      ]
+    }))
+  }</div>
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "pH",
+      subtitle: "Measured at Field Station Surface",
+      width,
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "pH", domain: [7.5, 8.5]},
+      marks: [
+		Plot.lineY(topPH, {x: "Date", y: (d) => d.Value, stroke: "steelblue"})
+      ]
+    }))
+  }</div>
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Chlorophyl-A",
+      subtitle: "Measured at Field Station Surface",
+      width,
+	  x: {type: "time", grid: true},
+      y: {grid: true, label: "RFU"},
+      marks: [
+	    Plot.ruleY([0]),
+		Plot.lineY(topCHLA, {x: "Date", y: (d) => d.Value, stroke: "steelblue"})
       ]
     }))
   }</div>

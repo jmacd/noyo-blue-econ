@@ -1,4 +1,178 @@
 Series Name,Location,Parameter,Timestamp,Value,Offset
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 17:00,2.4799,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 17:00,31.388,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 17:00,10.8178,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 17:00,9.4237,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 16:00,2.1635,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 16:00,31.2937,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 16:00,11.1175,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 16:00,9.3474,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 15:00,1.9397,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 15:00,30.7625,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 15:00,11.3051,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 15:00,9.5211,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 14:00,1.7714,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 14:00,29.5734,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 14:00,11.3547,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 14:00,9.923,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 13:00,1.7493,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 13:00,29.8442,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 13:00,11.3385,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 13:00,9.7585,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 12:00,1.8553,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 12:00,28.4584,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 12:00,11.3319,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 12:00,9.9399,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 11:00,2.0656,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 11:00,29.886,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 11:00,11.218,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 11:00,9.5432,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 10:00,2.3414,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 10:00,30.3386,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 10:00,10.9817,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 10:00,8.9782,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 09:00,2.6587,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 09:00,31.363,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 09:00,10.8306,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 09:00,8.7926,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 08:00,2.9283,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 08:00,31.6446,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 08:00,10.5188,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 08:00,8.7737,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 07:00,3.1252,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 07:00,32.0074,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 07:00,10.4529,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 07:00,8.6451,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 06:00,3.2081,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 06:00,31.9413,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 06:00,10.5802,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 06:00,8.7124,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 05:00,3.1836,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 05:00,31.9066,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 05:00,10.551,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 05:00,8.6899,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 04:00,3.0869,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 04:00,31.9085,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 04:00,10.6758,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 04:00,8.8286,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 03:00,2.9655,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 03:00,31.5563,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 03:00,10.958,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 03:00,9.1396,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 02:00,2.8391,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 02:00,31.0737,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 02:00,11.0826,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 02:00,9.3848,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 01:00,2.742,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 01:00,31.0639,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 01:00,11.1034,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 01:00,9.2956,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 00:00,2.7287,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-16 00:00,30.7191,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-16 00:00,11.1466,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-16 00:00,9.3478,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 23:00,2.7894,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 23:00,31.082,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 23:00,11.1284,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 23:00,9.3835,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 22:00,2.8935,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 22:00,31.0814,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 22:00,11.1384,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 22:00,9.4453,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 21:00,3.0047,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 21:00,31.1348,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 21:00,11.1428,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 21:00,9.4622,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 20:00,3.0468,-6.46
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 20:00,11.1781,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 19:00,2.9958,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 19:00,30.9302,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 19:00,11.182,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 19:00,9.637,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 18:00,2.9181,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 18:00,30.7966,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 18:00,11.1608,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 18:00,9.664,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 17:00,2.6897,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 17:00,30.7305,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 17:00,11.0895,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 17:00,9.6351,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 16:00,2.4523,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 16:00,30.2447,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 16:00,11.0398,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 16:00,9.7382,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 15:00,2.1518,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 15:00,30.5055,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 15:00,11.1057,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 15:00,9.5715,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 14:00,1.8983,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 14:00,30.6834,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 14:00,11.127,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 14:00,9.6744,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 13:00,1.7349,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 13:00,27.0768,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 13:00,11.0634,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 13:00,9.8884,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 12:00,1.6959,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 12:00,26.7521,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 12:00,10.9837,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 12:00,9.8625,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 11:00,1.8029,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 11:00,27.573,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 11:00,10.8626,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 11:00,9.6107,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 10:00,1.9845,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 10:00,28.8224,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 10:00,10.8163,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 10:00,9.4193,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 09:00,2.3327,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 09:00,30.6233,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 09:00,10.798,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 09:00,9.0316,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 08:00,2.6589,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 08:00,31.3948,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 08:00,10.7876,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 08:00,8.933,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 07:00,2.9813,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 07:00,31.6837,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 07:00,10.8013,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 07:00,9.0106,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 06:00,3.2467,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 06:00,31.5902,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 06:00,11.0257,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 06:00,9.2396,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 05:00,3.3794,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 05:00,31.8212,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 05:00,10.9919,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 05:00,9.2494,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 04:00,3.3771,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 04:00,31.8831,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 04:00,10.954,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 04:00,9.2544,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 03:00,3.3242,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 03:00,31.726,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 03:00,10.823,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 03:00,9.3441,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 02:00,3.1124,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 02:00,31.8065,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 02:00,10.7355,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 02:00,9.2708,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 01:00,2.9757,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 01:00,31.6517,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 01:00,10.7317,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 01:00,9.2775,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-15 00:00,2.8741,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-15 00:00,31.379,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-15 00:00,10.7201,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-15 00:00,9.3685,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-14 23:00,2.816,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-14 23:00,31.3849,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-14 23:00,10.7249,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-14 23:00,9.331,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-14 22:00,2.8514,-6.46
+"Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-14 22:00,31.547,0
+"Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-14 22:00,10.723,0
+"Bottom DO","FS-Bottom","DO-sensor",2024-04-14 22:00,9.2313,0
 "Depth","FS-Bottom","Depth-sensor",2024-04-14 21:00,2.9546,-6.46
 "Bottom Salinity","FS-Bottom","Salinity-sensor",2024-04-14 21:00,31.5359,0
 "Bottom Temp","FS-Bottom","Temperature-sensor",2024-04-14 21:00,10.7231,0
