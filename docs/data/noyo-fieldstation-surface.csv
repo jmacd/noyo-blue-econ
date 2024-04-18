@@ -1,4 +1,166 @@
 Series Name,Location,Parameter,Timestamp,Value,Offset
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 21:00,3.1922,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 21:00,7.7132,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 21:00,13.0688,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 21:00,10.7205,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 21:00,1.2575,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 21:00,8.1371,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 20:00,3.096,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 20:00,8.6357,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 20:00,13.4108,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 20:00,10.5907,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 20:00,1.2099,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 20:00,8.0956,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 19:00,2.9279,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 19:00,7.8707,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 19:00,13.9224,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 19:00,10.7346,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 19:00,3.3996,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 19:00,8.106,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 18:00,2.6307,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 18:00,5.9127,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 18:00,14.3467,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 18:00,10.7957,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 18:00,1.5845,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 18:00,8.0621,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 17:00,2.3224,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 17:00,5.633,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 17:00,14.3004,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 17:00,10.8618,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 17:00,1.7763,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 17:00,8.0745,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 16:00,2.0401,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 16:00,4.7035,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 16:00,14.4669,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 16:00,10.7269,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 16:00,1.9228,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 16:00,7.9921,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 15:00,1.8506,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 15:00,5.399,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 15:00,13.8819,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 15:00,10.8726,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 15:00,1.6448,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 15:00,8.0714,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 14:00,1.7951,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 14:00,6.7331,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 14:00,13.333,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 14:00,10.7713,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 14:00,1.6934,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 14:00,8.0187,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 13:00,1.8676,0
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 13:00,6.9063,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 13:00,12.8404,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 13:00,10.567,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 13:00,2.5872,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 13:00,7.9861,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 12:00,2.0747,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 12:00,5.783,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 12:00,12.2248,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 12:00,10.435,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 12:00,1.5005,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 12:00,7.9004,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 11:00,2.3682,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 11:00,3.287,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 11:00,11.9601,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 11:00,10.4591,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 11:00,2.3273,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 11:00,7.8041,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 10:00,2.6793,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 10:00,3.03,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 10:00,11.565,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 10:00,10.5656,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 10:00,1.7721,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 10:00,7.8589,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 09:00,2.8747,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 09:00,3.1489,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 09:00,11.4439,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 09:00,10.5816,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 09:00,2.0108,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 09:00,7.8537,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 08:00,3.0756,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 08:00,3.4604,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 08:00,11.1335,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 08:00,10.5979,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 08:00,1.917,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 08:00,7.8811,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 07:00,3.1551,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 07:00,3.9079,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 07:00,11.3252,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 07:00,10.7095,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 07:00,1.5595,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 07:00,7.9335,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 06:00,3.086,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 06:00,4.1384,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 06:00,11.471,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 06:00,10.7352,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 06:00,2.2326,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 06:00,7.9592,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 05:00,2.9593,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 05:00,4.3404,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 05:00,11.7524,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 05:00,10.7975,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 05:00,1.4614,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 05:00,7.9861,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 04:00,2.7954,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 04:00,3.9164,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 04:00,11.9314,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 04:00,10.851,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 04:00,1.6729,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 04:00,7.9807,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 03:00,2.6778,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 03:00,3.96,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 03:00,11.8172,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 03:00,10.8887,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 03:00,1.6945,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 03:00,7.9888,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 02:00,2.5929,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 02:00,3.6659,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 02:00,11.8306,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 02:00,10.9614,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 02:00,2.5635,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 02:00,8.0032,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 01:00,2.6201,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 01:00,3.9712,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 01:00,12.1054,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 01:00,11.0312,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 01:00,1.5463,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 01:00,8.0261,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-17 00:00,2.7092,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-17 00:00,3.9508,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-17 00:00,12.2483,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-17 00:00,11.1088,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-17 00:00,1.7917,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-17 00:00,8.048,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 23:00,2.8561,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 23:00,3.9814,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 23:00,12.4594,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-16 23:00,11.2024,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-16 23:00,1.7395,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-16 23:00,8.0785,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 22:00,3.0236,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 22:00,4.8921,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 22:00,12.6187,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-16 22:00,11.1491,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-16 22:00,1.2774,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-16 22:00,8.1226,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 20:00,3.0985,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 20:00,6.521,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 20:00,13.4532,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-16 20:00,10.8167,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-16 20:00,1.8141,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-16 20:00,8.1028,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 19:00,2.9842,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 19:00,6.554,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 19:00,13.827,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-16 19:00,10.6697,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-16 19:00,2.2356,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-16 19:00,8.0423,0
+"Depth","FS-Bottom","Depth-sensor",2024-04-16 18:00,2.7805,-6.46
+"Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 18:00,6.7833,0
+"Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 18:00,14.1637,0
+"Surface DO","FS-Surface","DO-sensor",2024-04-16 18:00,10.7406,0
+"Surface Chl-a","FS-Surface","Chl-a Fluorescence-sensor",2024-04-16 18:00,2.8658,0
+"Surface pH","FS-Surface","pH-sensor",2024-04-16 18:00,8.0429,0
 "Depth","FS-Bottom","Depth-sensor",2024-04-16 17:00,2.4799,-6.46
 "Surface Salinity","FS-Surface","Salinity-sensor",2024-04-16 17:00,6.0467,0
 "Surface Temp","FS-Surface","Temperature-sensor",2024-04-16 17:00,14.2288,0
