@@ -1,11 +1,12 @@
 ---
 toc: false
 sql:
-  fieldstationSurface: ./data/noyo-fieldstation-surface.csv
-  fieldstationBottom: ./data/noyo-fieldstation-bottom.csv
-  princessData: ./data/noyo-princess.csv
-  bDockData: ./data/noyo-bdock.csv
-  silversData: ./data/noyo-silvers.csv
+  BDock_AT500:     ./data/data-BDock_AT500_1115690.1.parquet
+  BDock_VuLink:    ./data/data-BDock_VuLink_1114049.1.parquet
+  Princess_AT500:  ./data/data-Princess_AT500_1115670.1.parquet
+  Princess_VuLink: ./data/data-Princess_VuLink_1114447.1.parquet
+  Silver_AT500:    ./data/data-Silver_AT500_1115675.1.parquet
+  Silver_VuLink:   ./data/data-Silver_VuLink_1114440.1.parquet
 theme: "cotton"
 ---
 
@@ -71,41 +72,15 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 })
   .addTo(map);
 
-L.marker([39.42768783218275, -123.80584629151588]).bindPopup("Princess").addTo(map);
-L.marker([39.42630383307301, -123.80507914592623]).bindPopup("Silvers").addTo(map);
-L.marker([39.42359794726219, -123.80380240755608]).bindPopup("Field Station").addTo(map);
-L.marker([39.42398791346205, -123.80214663996874]).bindPopup("B Dock").addTo(map);
+L.circle([39.42768783218275, -123.80584629151588], {radius: 20}).bindPopup("Princess").addTo(map);
+L.circle([39.42630383307301, -123.80507914592623], {radius: 20}).bindPopup("Silvers").addTo(map);
+L.circle([39.42359794726219, -123.80380240755608], {radius: 20}).bindPopup("Field Station").addTo(map);
+L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Dock").addTo(map);
 ```
 
 ```js
-// From FS-Top: LakeTech style data
-const topsal = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Surface' as Name from fieldstationSurface where \"Series Name\" = 'Surface Salinity' AND date_sub('day', Date, current_date) < 14`
-const topDO = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Surface' as Name from fieldstationSurface where \"Series Name\" = 'Surface DO' AND date_sub('day', Date, current_date) < 14`
-const topTEMP = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Surface' as Name from fieldstationSurface where \"Series Name\" = 'Surface Temp' AND date_sub('day', Date, current_date) < 14`
-const topCHLA = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Surface' as Name from fieldstationSurface where \"Series Name\" = 'Surface Chl-a' AND date_sub('day', Date, current_date) < 14`
-const topPH = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Surface' as Name from fieldstationSurface where \"Series Name\" = 'Surface pH' AND date_sub('day', Date, current_date) < 14`
 
-// From FS-Bottom: LakeTech style is localtime
-const botsal = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Bottom' as Name from fieldstationBottom where \"Series Name\" = 'Bottom Salinity' AND date_sub('day', Date, current_date) < 14`
-const botDO = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Bottom' as Name from fieldstationBottom where \"Series Name\" = 'Bottom DO' AND date_sub('day', Date, current_date) < 14`
-const botTEMP = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Bottom' as Name from fieldstationBottom where \"Series Name\" = 'Bottom Temp' AND date_sub('day', Date, current_date) < 14`
-const botdep = await sql`SELECT Value, "Offset", strptime(Timestamp, '%Y-%m-%d %H:%M') as Date, 'FS Bottom' as Name from fieldstationBottom where \"Series Name\" = 'Depth' AND date_sub('day', Date, current_date) < 14`
-
-// Princess, Silvers, B Dock: In-Situ stye data is UTC, subtract 7 hours
-const bdockSal = await sql`SELECT "Salinity (psu)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'B Dock Bottom' as Name from bDockData where date_sub('day', Date, current_date) < 14`
-const princessSal = await sql`SELECT "Salinity (psu)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Princess Bottom' as Name from princessData where date_sub('day', Date, current_date) < 14`
-const silversSal = await sql`SELECT "Salinity (psu)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Silvers Bottom' as Name from silversData where date_sub('day', Date, current_date) < 14`
-
-const bdockDO = await sql`SELECT "DO (mg/L)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'B Dock Bottom' as Name from bDockData where date_sub('day', Date, current_date) < 14`
-const princessDO = await sql`SELECT "DO (mg/L)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Princess Bottom' as Name from princessData where date_sub('day', Date, current_date) < 14`
-const silversDO = await sql`SELECT "DO (mg/L)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Silvers Bottom' as Name from silversData where date_sub('day', Date, current_date) < 14`
-
-// Note: the Princess data set has a missing value for temperature, added Value != 0 clause.
-const bdockTEMP = await sql`SELECT "Temperature (C)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'B Dock Bottom' as Name from bDockData where date_sub('day', Date, current_date) < 14 AND Value != 0`
-const princessTEMP = await sql`SELECT "Temperature (C)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Princess Bottom' as Name from princessData where date_sub('day', Date, current_date) < 14 AND Value != 0`
-const silversTEMP = await sql`SELECT "Temperature (C)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Silvers Bottom' as Name from silversData where date_sub('day', Date, current_date) < 14 AND Value != 0`
-
-const princessTDS = await sql`SELECT "Total Dissolved Solids (mg/L)" as Value, "Date Time" - INTERVAL 7 hour as Date, 'Princess Bottom' as Name from princessData where date_sub('day', Date, current_date) < 14`
+const bdockSal = await sql`SELECT "Actual Conductivity.µS/cm" as Value, timestamp*1000 as Date, 'BDock Surface' as Name from BDock_AT500`
 
 // Note was using "Offset" field, but it changed in the past couple of days.
 const harborOffset = -6.46
@@ -118,19 +93,6 @@ function c2f(x) {
 <div class="grid grid-cols-2">
   <div class="card">${
     resize((width) => Plot.plot({
-      title: "Harbor Depth",
-      width,
-	  x: {grid: true, type: "time"},
-      y: {grid: true, label: "Depth (ft)"},
-	  color: {legend: true},
-      marks: [
-	    Plot.ruleY([0]),
-		Plot.lineY(botdep, {x: "Date", y: (d) => d.Value - harborOffset, stroke: "Name"})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
       title: "Salinity",
       width,
 	  x: {grid: true, type: "time"},
@@ -139,82 +101,11 @@ function c2f(x) {
       marks: [
         Plot.ruleY([0]),
         Plot.ruleY([35]),
-		Plot.lineY(botsal, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(topsal, {x: "Date", y: "Value", stroke: "Name"}),
 		Plot.lineY(bdockSal, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(princessSal, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(silversSal, {x: "Date", y: "Value", stroke: "Name"})
       ]
     }))
   }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Disolved Oxygen",
-      width,
-	  x: {type: "time", grid: true},
-      y: {grid: true, label: "Disolved Oxygen (mg/L)", domain: [7, 12.5]},
-	  color: {legend: true},
-      marks: [
-		Plot.lineY(topDO, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(botDO, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(bdockDO, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(princessDO, {x: "Date", y: "Value", stroke: "Name"}),
-		Plot.lineY(silversDO, {x: "Date", y: "Value", stroke: "Name"})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Water Temperature",
-      width,
-	  x: {type: "time", grid: true},
-      y: {grid: true, label: "℉", domain: [45, 60]},
-	  color: {legend: true},
-      marks: [
-		Plot.lineY(topTEMP, {x: "Date", y: (d) => c2f(d.Value), stroke: "Name"}),
-		Plot.lineY(botTEMP, {x: "Date", y: (d) => c2f(d.Value), stroke: "Name"}),
-		Plot.lineY(bdockTEMP, {x: "Date", y: (d) => c2f(d.Value), stroke: "Name"}),
-		Plot.lineY(princessTEMP, {x: "Date", y: (d) => c2f(d.Value), stroke: "Name"}),
-		Plot.lineY(silversTEMP, {x: "Date", y: (d) => c2f(d.Value), stroke: "Name"})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "pH",
-      width,
-	  x: {type: "time", grid: true},
-      y: {grid: true, label: "pH", domain: [7.5, 8.5]},
-	  color: {legend: true},
-      marks: [
-		Plot.lineY(topPH, {x: "Date", y: "Value", stroke: "Name"})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Chlorophyl-A",
-      width,
-	  x: {type: "time", grid: true},
-      y: {grid: true, label: "RFU"},
-	  color: {legend: true},
-      marks: [
-	    Plot.ruleY([0]),
-		Plot.lineY(topCHLA, {x: "Date", y: "Value", stroke: "Name"})
-      ]
-    }))
-  }</div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Total Dissolved Solids (mg/L)",
-      width,
-	  x: {grid: true, type: "time"},
-      y: {grid: true, label: "mg/L"},
-	  color: {legend: true},
-      marks: [
-	    Plot.ruleY([0]),
-		Plot.lineY(princessTDS, {x: "Date", y: "Value", stroke: "Name"})
-      ]
-    }))
-  }</div>
+  <div class="card">
+    Inputs.table(bdockSal)
+  </div>
 </div>
