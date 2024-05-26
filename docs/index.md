@@ -80,7 +80,7 @@ L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Do
 
 ```js
 
-const bdockSal = await sql`SELECT "Actual Conductivity.µS/cm" as Value, timestamp*1000 as Date, 'BDock Surface' as Name from BDock_AT500`
+const bdockSal = await sql`SELECT "Actual Conductivity.µS/cm"/1000 as Value, timestamp*1000 as Date, 'BDock Surface' as Name from BDock_AT500`
 
 // Note was using "Offset" field, but it changed in the past couple of days.
 const harborOffset = -6.46
@@ -106,6 +106,5 @@ function c2f(x) {
     }))
   }</div>
   <div class="card">
-    Inputs.table(bdockSal)
   </div>
 </div>
