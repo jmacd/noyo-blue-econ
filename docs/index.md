@@ -1,12 +1,6 @@
 ---
 toc: false
-sql:
-  BDOCK_AT500: ./data/loc.BDock_AT500_1115690.parquet
-  BDOCK_VULINK: ./data/loc.BDock_VuLink_1114049.parquet
-  PRINCESS_AT500: ./data/loc.Princess_AT500_1115670.parquet
-  PRINCESS_VULINK: ./data/loc.Princess_VuLink_1114447.parquet
-  SILVER_AT500: ./data/loc.Silver_AT500_1115675.parquet
-  SILVER_VULINK: ./data/loc.Silver_VuLink_1114440.parquet
+title: "Area Map"
 theme: "cotton"
 ---
 
@@ -53,70 +47,28 @@ theme: "cotton"
 </style>
 
 <div class="hero">
-	<!-- <h1>Noyo Harbor Blue Economy</h1> -->
-	<!-- <h2>Feasibility Study Data Gathering</h2> -->
-	<h1>Testing</h1>
-	<h2>Feasibility</h2>
+	<h1>Noyo Harbor Blue Economy</h1>
+	<h2>Project page</h2>
 </div>
 
-<!-- ```js -->
-<!-- const lattitude = 39.425200984011916 -->
-<!-- const longitude = -123.80366719309244 -->
-
-<!-- const div = display(document.createElement("div")); -->
-<!-- div.style = "height: 400px;"; -->
-
-<!-- const map = L.map(div, { scrollWheelZoom: false }) -->
-<!--   .setView([lattitude, longitude], 16); -->
-
-<!-- L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { -->
-<!--   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' -->
-<!-- }) -->
-<!--   .addTo(map); -->
-
-<!-- L.circle([39.42768783218275, -123.80584629151588], {radius: 20}).bindPopup("Princess").addTo(map); -->
-<!-- L.circle([39.42630383307301, -123.80507914592623], {radius: 20}).bindPopup("Silvers").addTo(map); -->
-<!-- L.circle([39.42359794726219, -123.80380240755608], {radius: 20}).bindPopup("Field Station").addTo(map); -->
-<!-- L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Dock").addTo(map); -->
-<!-- ``` -->
-
-<!-- ```js -->
-
-<!-- const bdockSal = await sql`SELECT "Actual Conductivity.µS/cm"/1000 as Value, timestamp*1000 as Date, 'BDock Surface' as Name from BDock_AT500` -->
-
-<!-- // Note was using "Offset" field, but it changed in the past couple of days. -->
-<!-- const harborOffset = -6.46 -->
-
-<!-- function c2f(x) { -->
-<!--     return (x * 9 / 5) + 32 -->
-<!-- }	 -->
-<!-- ``` -->
-
-
 ```js
+const lattitude = 39.425200984011916
+const longitude = -123.80366719309244
 
-const now = new Date().getTime()
-const begin = now - 90 * 24 * 3600 * 1000
+const div = display(document.createElement("div"));
+div.style = "height: 400px;";
 
-const silverBat = await sql`SELECT "Battery Level.%" as Value, timestamp*1000 as UTC, 'Silver Vulink' as Name from SILVER_VULINK where UTC >= ${begin}`
+const map = L.map(div, { scrollWheelZoom: false })
+  .setView([lattitude, longitude], 16);
+
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+})
+  .addTo(map);
+
+L.circle([39.42768783218275, -123.80584629151588], {radius: 20}).bindPopup("Princess").addTo(map);
+L.circle([39.42630383307301, -123.80507914592623], {radius: 20}).bindPopup("Silvers").addTo(map);
+L.circle([39.42359794726219, -123.80380240755608], {radius: 20}).bindPopup("Field Station").addTo(map);
+L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Dock").addTo(map);
 ```
 
-```js
-display(silverBat.toArray())
-```
-
-<div class="grid grid-cols-2">
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Battery",
-      width,
-	  x: {grid: true, type: "utc", domain: [begin, now]},
-      y: {grid: true, label: "Battery Level", domain: [0, 100]},
-	  color: {legend: true},
-      marks: [
-	    Plot.ruleY([0]),
-		Plot.dot(silverBat, {x: "UTC", y: "Value", stroke: "Name"}),
-      ]
-    }))
-  }</div>
-</div>
