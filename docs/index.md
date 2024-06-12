@@ -1,9 +1,12 @@
 ---
 toc: false
 sql:
-  DIR:      ./data/pond/HydroVu/9e604298-c16f-4906-a2d6-3c0c358a01dd/dir.3.parquet
-  TEMPORAL: ./data/pond/HydroVu/9e604298-c16f-4906-a2d6-3c0c358a01dd/temporal.3.parquet
-  LOCATIONS: ./data/pond/HydroVu/9e604298-c16f-4906-a2d6-3c0c358a01dd/locations.1.parquet
+  BDOCK_AT500: ./data/loc.BDock_AT500_1115690.parquet
+  BDOCK_VULINK: ./data/loc.BDock_VuLink_1114049.parquet
+  PRINCESS_AT500: ./data/loc.Princess_AT500_1115670.parquet
+  PRINCESS_VULINK: ./data/loc.Princess_VuLink_1114447.parquet
+  SILVER_AT500: ./data/loc.Silver_AT500_1115675.parquet
+  SILVER_VULINK: ./data/loc.Silver_VuLink_1114440.parquet
 theme: "cotton"
 ---
 
@@ -89,77 +92,31 @@ theme: "cotton"
 <!-- }	 -->
 <!-- ``` -->
 
-```js
-// https://observablehq.observablehq.cloud/framework-example-input-select-file/
-
-const inputs = await sql`SELECT name, id FROM LOCATIONS order by name`;
-
-const input = view(Inputs.select(inputs, {
-    value: inputs[0], 
-    label: "Instrument",
-    format: (t) => t.name,
-}));
-```
-
 
 ```js
-const prefix = "data-" + input.id;
+
+const now = new Date().getTime()
+const begin = now - 90 * 24 * 3600 * 1000
+
+const silverBat = await sql`SELECT "Battery Level.%" as Value, timestamp*1000 as UTC, 'Silver Vulink' as Name from SILVER_VULINK where UTC >= ${begin}`
 ```
 
 ```js
-const dirs = await sql`SELECT number FROM DIR where prefix = ${prefix}`;
-
-const dirnames = dirs.toArray().map(_=>_.number);
-
-//const dir = view(Inputs.select(dirs, {value: dirs[0], label: "File:"}));
+display(silverBat.toArray())
 ```
 
-```js
-const filenames = dirnames.map(_=> "./data/pond/HydroVu/9e604298-c16f-4906-a2d6-3c0c358a01dd/" + prefix + "." + _ + ".parquet")
-display(filenames)
-```
-
-```js
-const db = DuckDBClient.of(filenames.map(_ => FileAttachment(_)));
-
-const params = await db.sql`DESCRIBE data;`
-```
-
-
-<!-- <div class="grid grid-cols-2"> -->
-<!--   <div class="card">${ -->
-<!--     resize((width) => Plot.plot({ -->
-<!--       title: "Salinity", -->
-<!--       width, -->
-<!-- 	  x: {grid: true, type: "time"}, -->
-<!--       y: {grid: true, label: "Salinity (g/kg)", domain: [0, 40]}, -->
-<!-- 	  color: {legend: true}, -->
-<!--       marks: [ -->
-<!--         Plot.ruleY([0]), -->
-<!--         Plot.ruleY([35]), -->
-<!-- 		Plot.lineY(bdockSal, {x: "Date", y: "Value", stroke: "Name"}), -->
-<!--       ] -->
-<!--     })) -->
-<!--   }</div> -->
-<!--   <div class="card"> -->
-<!--   </div> -->
-<!-- </div> -->
-
-<!-- <div class="grid grid-cols-2"> -->
-<!--   <div class="card">${ -->
-<!--     resize((width) => Plot.plot({ -->
-<!--       title: "Salinity", -->
-<!--       width, -->
-<!-- 	  x: {grid: true, type: "time"}, -->
-<!--       y: {grid: true, label: "Salinity (g/kg)", domain: [0, 40]}, -->
-<!-- 	  color: {legend: true}, -->
-<!--       marks: [ -->
-<!--         Plot.ruleY([0]), -->
-<!--         Plot.ruleY([35]), -->
-<!-- 		Plot.lineY(bdockSal, {x: "Date", y: "Value", stroke: "Name"}), -->
-<!--       ] -->
-<!--     })) -->
-<!--   }</div> -->
-<!--   <div class="card"> -->
-<!--   </div> -->
-<!-- </div> -->
+<div class="grid grid-cols-2">
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: "Battery",
+      width,
+	  x: {grid: true, type: "utc", domain: [begin, now]},
+      y: {grid: true, label: "Battery Level", domain: [0, 100]},
+	  color: {legend: true},
+      marks: [
+	    Plot.ruleY([0]),
+		Plot.dot(silverBat, {x: "UTC", y: "Value", stroke: "Name"}),
+      ]
+    }))
+  }</div>
+</div>
