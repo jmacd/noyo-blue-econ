@@ -52,6 +52,71 @@ theme: "cotton"
 </div>
 
 ```js
+function c2q(cname) {
+	return `SELECT "${cname}" as Value, timestamp*1000 as UTC from data where UTC >= ${begin}`;
+}
+
+const all_variables = [
+   {
+     name: "Temperature",
+	 unit: "C",
+	 key: "Temperature.C",
+	 domain: [0, 30], 
+	 mark: Plot.line
+   },
+   {
+     name: "Atmospheric Pressure",
+	 unit: "psi",
+	 key: "Baro.psi",
+	 domain: [14, 15], 
+	 mark: Plot.line
+   },
+   {
+     name: "Battery Level",
+	 unit: "%",
+	 key: "Battery Level.%",
+	 domain: [0, 100], 
+	 mark: Plot.line
+   },
+   {
+	 name: "Total Dissolved Solids",
+	 unit: "mg/L",
+	 key: "Total Dissolved Solids.mg/L",
+	 domain: [0, 50000],
+	 mark: Plot.line
+   },
+   {
+	 name: "DO",
+	 unit: "mg/L",
+	 key: "DO.mg/L",
+	 domain: [0, 20],
+	 mark: Plot.line
+   },
+   {
+	 name: "Depth",
+	 unit: "m",
+	 key: "Depth.m",
+	 domain: [0, 4],
+	 mark: Plot.line
+   },
+   {
+	 name: "Specific Conductivity",
+	 unit: "µS/cm",
+	 key: "Specific Conductivity.µS/cm",
+	 domain: [0, 10000],
+	 mark: Plot.line
+   },
+   {
+	 name: "Salinity",
+	 unit: "psu",
+	 key: "Salinity.psu",
+	 domain: [0, 35],
+	 mark: Plot.line
+   }
+];
+```
+
+```js
 
 const timepicks = [
   {
@@ -64,7 +129,7 @@ const timepicks = [
   },
   {
     name: "2 Weeks",
-	days: 14
+		days: 14
   },
   {
     name: "1 Week",
@@ -91,15 +156,33 @@ const begin = now - timepick.days * 24 * 3600 * 1000
 const instruments = [
    {
      name: "Silver Vulink",
-     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Silver_VuLink_1114440.parquet")})
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Silver_VuLink_1114440.parquet")}),
+	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
    },
    {
      name: "B Dock Vulink",
-     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.BDock_VuLink_1114049.parquet")})
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.BDock_VuLink_1114049.parquet")}),
+	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
    },
    {
      name: "Princess Vulink",
-     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Princess_VuLink_1114447.parquet")})
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Princess_VuLink_1114447.parquet")}),
+	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
+   },
+   {
+     name: "Silver AT500",
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Silver_AT500_1115675.parquet")}),
+	 vars: ["Temperature", "Specific Conductivity", "DO", "Depth", "Salinity"]
+   },
+   {
+     name: "B Dock AT500",
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.BDock_AT500_1115690.parquet")}),
+	 vars: ["Temperature", "Specific Conductivity", "DO", "Depth", "Salinity"]
+   },
+   {
+     name: "Princess AT500",
+     duck: await DuckDBClient.of({data: FileAttachment("./data/loc.Princess_AT500_1115670.parquet")}),
+	 vars: ["Temperature", "Total Dissolved Solids", "DO", "Depth", "Salinity"]
    }
 ];
 
@@ -111,35 +194,7 @@ const instrument = view(Inputs.select(instruments, {
 ```
 
 ```js
-
-function c2q(cname) {
-	return `SELECT ${cname} as Value, timestamp*1000 as UTC from data where UTC >= ${begin}`;
-}
-
-
-const variables = [
-   {
-     name: "Temperature",
-	 unit: "C",
-	 domain: [0, 30], 
-	 query: (x) => x.query(`SELECT "Temperature.C" as Value, timestamp*1000 as UTC from data where UTC >= ${begin}`),
-	 mark: Plot.line
-   },
-   {
-     name: "Atmospheric Pressure",
-	 unit: "psi",
-	 domain: [14, 15], 
-	 query: (x) => x.query(`SELECT "Baro.psi" as Value, timestamp*1000 as UTC from data where UTC >= ${begin}`),
-	 mark: Plot.line
-   },
-   {
-     name: "Battery Level",
-	 unit: "%",
-	 domain: [0, 100], 
-	 query: (x) => x.query(`SELECT "Battery Level.%" as Value, timestamp*1000 as UTC from data where UTC >= ${begin}`),
-	 mark: Plot.line
-   }
-];
+const variables = all_variables.filter((x) => instrument.vars.includes(x.name));
 
 const variable = view(Inputs.select(variables, {
     value: variables[0], 
@@ -149,7 +204,7 @@ const variable = view(Inputs.select(variables, {
 ```
 
 ```js
-const result = variable.query(instrument.duck)
+const result = instrument.duck.query(c2q(variable.key));
 ```
 
 <div class="grid grid-cols-1">
