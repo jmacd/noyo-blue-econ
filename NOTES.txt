@@ -1,0 +1,8 @@
+Temperature,
+Salinity,
+Disolved Ox.
+
+
+1 summary with those three parameters, radio button for sites
+1 parameter, multiple sites
+1 site, multiple parameters

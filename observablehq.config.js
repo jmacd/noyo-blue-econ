@@ -22,7 +22,7 @@ export default {
   // footer: "Built with Observable.", // what to show in the footer (HTML)
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
-  // root: "docs", // path to the source root for preview
+  root: "src", // path to the source root for preview
   // output: "dist", // path to the output root for build
   // search: true, // activate search
 };
