@@ -79,6 +79,7 @@ const all_variables = [
 ];
 
 const timelist = [
+  ["1 Day", 1],
   ["1 Week", 7],
   ["2 Weeks", 14],
   ["1 Month", 30],
@@ -178,10 +179,29 @@ Inputs.table(duck.sql`select * from bdock`)
 hi
 
 ```js
-//const results = instruments.map((inst) => { 
-//   console.log("VALUE");
-//   console.log(inst.name);
-//   return duck.sql`SELECT "${variable.key}" as Value, timestamp*1000 as UTC from ${inst.short} where UTC >= ${begin}`;
-//});
-Inputs.table(duck.sql`SELECT "Vulink.Battery Level.%" as Value, timestamp*1000 as UTC from princess where UTC >= 0`)
+const byinst = instruments.map(inst => { 
+  const key = variable.key;
+  const short = inst.short;
+  return duck.query(`SELECT "${key}" as Value, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`);
+});
+const results = await Promise.all(byinst);
 ```
+
+```js
+const marks = results.map(result => {
+	return variable.mark(result, {x: "UTC", y: "Value"});
+});
+console.log("MARKS", marks)
+```
+
+<div class="grid grid-cols-1">
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: variable.name,
+      width,
+	  x: {grid: true, type: "utc", label: "Date", domain: [begin, now]},
+      y: {grid: true, label: variable.unit, domain: variable.domain},
+      marks: marks
+    }))
+  }</div>
+</div>
