@@ -79,7 +79,6 @@ const all_variables = [
 ];
 
 const timelist = [
-  ["1 Day", 1],
   ["1 Week", 7],
   ["2 Weeks", 14],
   ["1 Month", 30],
@@ -120,7 +119,9 @@ const instruments = view(
     }
   )
 );
+```
 
+```js
 const timepick = view(
   Inputs.radio(
     new Map(timelist),
@@ -135,9 +136,10 @@ const variable = view(
   Inputs.radio(
     all_variables,
     {
-      value: all_variables[0], 
+      value: all_variables[0],
       label: "Measurement",
       format: (t) => t.name,
+	  disabled: all_variables.filter((x) => instruments.reduce((acc, arg) => acc || !arg.vars.includes(x.name), false))
     }
   )
 );
@@ -161,28 +163,13 @@ const begin = now - timepick * 24 * 3600 * 1000;
 function c2q(short, cname) {
 	return `SELECT "${cname}" as Value, timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
 }
-
-//const princess = duck.sql`select * from princess`;
-//Inputs.table(princess)
 ```
-
-hello
-
-```js
-duck.queryRow(`SELECT COUNT() FROM princess`)
-```
-there
-
-```js
-Inputs.table(duck.sql`select * from bdock`)
-```
-hi
 
 ```js
 const byinst = instruments.map(inst => { 
   const key = variable.key;
   const short = inst.short;
-  return duck.query(`SELECT "${key}" as Value, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`);
+  return duck.query(`SELECT "${key}" as Value, Timestamp*1000 as UTC from ${short} where UTC >= ${begin} AND Value >= ${variable.domain[0]} AND Value <= ${variable.domain[1]}`);
 });
 const results = await Promise.all(byinst);
 ```
@@ -199,7 +186,7 @@ console.log("MARKS", marks)
     resize((width) => Plot.plot({
       title: variable.name,
       width,
-	  x: {grid: true, type: "utc", label: "Date", domain: [begin, now]},
+	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
       y: {grid: true, label: variable.unit, domain: variable.domain},
       marks: marks
     }))
