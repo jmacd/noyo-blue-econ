@@ -72,3 +72,142 @@ L.circle([39.42359794726219, -123.80380240755608], {radius: 20}).bindPopup("Fiel
 L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Dock").addTo(map);
 ```
 
+```js
+const all_variables = [
+   {
+     name: "Surface Salinity",
+	 unit: "%",
+	 key: "AT500_Surface.Salinity.psu",
+	 domain: [0, 40], 
+	 mark: Plot.line
+   },
+   {
+     name: "Bottom Salinity",
+	 unit: "%",
+	 key: "AT500_Bottom.Salinity.psu",
+	 domain: [0, 40], 
+	 mark: Plot.line
+   },
+   {
+     name: "Surface Salinity",
+	 unit: "%",
+	 key: "AT500_Surface.Salinity.psu",
+	 domain: [0, 40], 
+	 mark: Plot.line
+   },
+];
+
+const timelist = [
+  ["1 Week", 7],
+  ["2 Weeks", 14],
+  ["1 Month", 30],
+  ["2 Months", 60],
+  ["3 Months", 90]
+];
+
+const instruments_list = [
+   {
+     name: "Silver",
+	 short: "silver",
+	 vars: ["Surface Salinity"]
+   },
+   {
+     name: "B-Dock",
+	 short: "bdock",
+	 vars: ["Surface Salinity"]
+   },
+   {
+     name: "Princess",
+	 short: "princess",
+	 vars: ["Surface Salinity"]
+   },
+   {
+     name: "Field Station",
+	 short: "fieldstation",
+	 vars: ["Surface Salinity", "Bottom Salinity"]
+   },
+];
+
+const instruments = view(
+  Inputs.checkbox(
+    instruments_list,
+    {
+      value: instruments_list, 
+      label: "Instrument",
+      format: (t) => t.name,
+    }
+  )
+);
+```
+
+```js
+const timepick = view(
+  Inputs.radio(
+    new Map(timelist),
+    {
+		value: 7, 
+		label: "Time range", 
+   	}
+  )
+);
+
+const variable = view(
+  Inputs.radio(
+    all_variables,
+    {
+      value: all_variables[0],
+      label: "Measurement",
+      format: (t) => t.name,
+	  disabled: all_variables.filter((x) => instruments.reduce((acc, arg) => acc || !arg.vars.includes(x.name), false))
+    }
+  )
+);
+```
+
+```js
+// This section loads after the controls render.
+const duck = await DuckDBClient.of({
+    silver: FileAttachment("./data/combined-Silver.parquet"),
+    bdock: FileAttachment("./data/combined-BDock.parquet"),
+    princess: FileAttachment("./data/combined-Princess.parquet"),
+    fieldstation: FileAttachment("./data/combined-FieldStation.parquet"),
+});
+
+// Timestamps are in milliseconds
+const now = new Date().getTime();
+
+// 24 days, 3600 secs/hour, 1000 ms/sec
+const begin = now - timepick * 24 * 3600 * 1000;
+
+function c2q(short, cname) {
+	return `SELECT "${cname}" as Value, timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+}
+```
+
+```js
+const byinst = instruments.map(inst => { 
+  const key = variable.key;
+  const short = inst.short;
+  return duck.query(`SELECT "${key}" as Value, Timestamp*1000 as UTC from ${short} where UTC >= ${begin} AND Value >= ${variable.domain[0]} AND Value <= ${variable.domain[1]}`);
+});
+const results = await Promise.all(byinst);
+```
+
+```js
+const marks = results.map(result => {
+	return variable.mark(result, {x: "UTC", y: "Value"});
+});
+console.log("MARKS", marks)
+```
+
+<div class="grid grid-cols-1">
+  <div class="card">${
+    resize((width) => Plot.plot({
+      title: variable.name,
+      width,
+	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
+      y: {grid: true, label: variable.unit, domain: variable.domain},
+      marks: marks
+    }))
+  }</div>
+</div>
