@@ -65,13 +65,13 @@ const timelist = [
 
 const sites_list = [
    {
-     name: "Silver",
-	 short: "silver",
+     name: "B-Dock",
+	 short: "bdock",
 	 where: "Surface"
    },
    {
-     name: "B-Dock",
-	 short: "bdock",
+     name: "Silver",
+	 short: "silver",
 	 where: "Surface"
    },
    {
@@ -116,51 +116,52 @@ const sites = view(
 ```
 
 ```js
-// This section loads after the controls render.
-const duck = await DuckDBClient.of({
-    silver: FileAttachment("./data/combined-Silver.parquet"),
-    bdock: FileAttachment("./data/combined-BDock.parquet"),
-    princess: FileAttachment("./data/combined-Princess.parquet"),
-    fieldstation: FileAttachment("./data/combined-FieldStation.parquet"),
-});
-
 // Timestamps are in milliseconds
 const now = new Date().getTime();
 
 // 24 days, 3600 secs/hour, 1000 ms/sec
 const begin = now - timepick * 24 * 3600 * 1000;
 
-function c2q(short, cname) {
-	return `SELECT "${cname}" as Value, timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+function s2q(site) {
+  const where = site.where;
+  const short = site.short;
+  const sitename = site.name;
+  return `SELECT '${sitename}.' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
 }
 ```
 
 ```js
-const bysite = sites.map(site => { 
-  const where = site.where;
-  const short = site.short;
-  const sitename = site.name;
-  return duck.query(`SELECT '${sitename}' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`);
+// This section loads after the controls render.
+var duck = await DuckDBClient.of({
+    silver: FileAttachment("./data/combined-Silver.parquet"),
+    bdock: FileAttachment("./data/combined-BDock.parquet"),
+    princess: FileAttachment("./data/combined-Princess.parquet"),
+    fieldstation: FileAttachment("./data/combined-FieldStation.parquet"),
+});
+
+```
+
+```js
+const bysite = sites.map(site => {
+   const q = s2q(site);
+   console.log("query is", q);
+   return duck.query(q);
 });
 const results = await Promise.all(bysite);
 ```
 
 ```js
-Inputs.table(results[0])
-Inputs.table(results[1])
-Inputs.table(results[2])
-Inputs.table(results[3])
-Inputs.table(results[4])
+Inputs.table(results[0]);
 ```
 
 ```js
-const salinity = results.map(result => {
+var salinity = results.map(result => {
 	return Plot.lineY(result, {x: "UTC", y: "SAL", stroke: "SITE"});
 });
-const disolved = results.map(result => {
+var disolved = results.map(result => {
 	return Plot.lineY(result, {x: "UTC", y: "DO", stroke: "SITE"});
 });
-const temperature = results.map(result => {
+var temperature = results.map(result => {
 	return Plot.lineY(result, {x: "UTC", y: "TEMP", stroke: "SITE"});
 });
 ```
