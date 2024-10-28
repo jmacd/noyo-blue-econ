@@ -1,7 +1,6 @@
 ---
 toc: false
 title: "Area Map"
-theme: "cotton"
 ---
 
 <style>

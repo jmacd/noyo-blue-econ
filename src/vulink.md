@@ -1,7 +1,6 @@
 ---
 toc: false
 title: Vulink Instruments
-theme: "cotton"
 ---
 
 <style>
@@ -54,30 +53,6 @@ theme: "cotton"
 
 
 ```js
-const all_variables = [
-   {
-     name: "Battery Level",
-	 unit: "%",
-	 key: "Vulink.Battery Level.%",
-	 domain: [0, 100], 
-	 mark: Plot.line
-   },
-   {
-     name: "Temperature",
-	 unit: "C",
-	 key: "Vulink.Temperature.C",
-	 domain: [0, 30], 
-	 mark: Plot.line
-   },
-   {
-     name: "Atmospheric Pressure",
-	 unit: "psi",
-	 key: "Vulink.Baro.psi",
-	 domain: [14, 15], 
-	 mark: Plot.line
-   },
-];
-
 const timelist = [
   ["1 Week", 7],
   ["2 Weeks", 14],
@@ -88,24 +63,20 @@ const timelist = [
 
 const instruments_list = [
    {
-     name: "Silver",
+     name: "Wharf",
 	 short: "silver",
-	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
    },
    {
      name: "B-Dock",
 	 short: "bdock",
-	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
    },
    {
      name: "Princess",
 	 short: "princess",
-	 vars: ["Temperature", "Battery Level", "Atmospheric Pressure"]
    },
    {
      name: "Field Station",
 	 short: "fieldstation",
-	 vars: ["Battery Level", "Atmospheric Pressure"]
    },
 ];
 
@@ -131,18 +102,6 @@ const timepick = view(
    	}
   )
 );
-
-const variable = view(
-  Inputs.radio(
-    all_variables,
-    {
-      value: all_variables[0],
-      label: "Measurement",
-      format: (t) => t.name,
-	  disabled: all_variables.filter((x) => instruments.reduce((acc, arg) => acc || !arg.vars.includes(x.name), false))
-    }
-  )
-);
 ```
 
 ```js
@@ -160,35 +119,50 @@ const now = new Date().getTime();
 // 24 days, 3600 secs/hour, 1000 ms/sec
 const begin = now - timepick * 24 * 3600 * 1000;
 
-function c2q(short, cname) {
-	return `SELECT "${cname}" as Value, timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+function c2q(name, short) {
+	return `SELECT '${name}_' as SITE, "Vulink.Battery Level.%" as BATT, "Vulink.Baro.psi" as BARO, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
 }
 ```
 
 ```js
 const byinst = instruments.map(inst => { 
-  const key = variable.key;
-  const short = inst.short;
-  return duck.query(`SELECT "${key}" as Value, Timestamp*1000 as UTC from ${short} where UTC >= ${begin} AND Value >= ${variable.domain[0]} AND Value <= ${variable.domain[1]}`);
+  const qs = c2q(inst.name, inst.short);
+  console.log("qs is", qs);
+  return duck.query(qs);
 });
 const results = await Promise.all(byinst);
 ```
 
 ```js
-const marks = results.map(result => {
-	return variable.mark(result, {x: "UTC", y: "Value"});
+const battery = results.map(result => {
+	return Plot.lineY(result, {x: "UTC", y: "BATT", stroke: "SITE"});
 });
-console.log("MARKS", marks)
+const baro = results.map(result => {
+	return Plot.lineY(result, {x: "UTC", y: "BARO", stroke: "SITE"});
+});
 ```
 
 <div class="grid grid-cols-1">
   <div class="card">${
     resize((width) => Plot.plot({
-      title: variable.name,
+	  grid: true,
+      color: {legend: true},
+      title: "Battery Level",
       width,
 	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
-      y: {grid: true, label: variable.unit, domain: variable.domain},
-      marks: marks
+      y: {grid: true, label: "%", domain: [0, 100]},
+      marks: battery
+    }))
+  }</div>
+  <div class="card">${
+    resize((width) => Plot.plot({
+	  grid: true,
+      color: {legend: true},
+      title: "Barometric Pressure",
+      width,
+	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
+      y: {grid: true, label: "psi", domain: [13, 15]},
+      marks: baro
     }))
   }</div>
 </div>

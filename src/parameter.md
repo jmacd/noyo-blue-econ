@@ -1,7 +1,6 @@
 ---
 toc: false
 title: Key Parameters
-theme: "cotton"
 ---
 
 <style>
@@ -70,12 +69,12 @@ const sites_list = [
 	 where: "Surface"
    },
    {
-     name: "Silver",
+     name: "The Wharf",
 	 short: "silver",
 	 where: "Surface"
    },
    {
-     name: "Princess",
+     name: "Princess Seafood",
 	 short: "princess",
 	 where: "Surface"
    },
@@ -133,10 +132,10 @@ function s2q(site) {
 ```js
 // This section loads after the controls render.
 var duck = await DuckDBClient.of({
-    silver: FileAttachment("./data/combined-Silver.parquet"),
-    bdock: FileAttachment("./data/combined-BDock.parquet"),
-    princess: FileAttachment("./data/combined-Princess.parquet"),
-    fieldstation: FileAttachment("./data/combined-FieldStation.parquet"),
+    silver: FileAttachment("./data/combined-Silver.parquet").parquet(),
+    bdock: FileAttachment("./data/combined-BDock.parquet").parquet(),
+    princess: FileAttachment("./data/combined-Princess.parquet").parquet(),
+    fieldstation: FileAttachment("./data/combined-FieldStation.parquet").parquet(),
 });
 
 ```
