@@ -55,6 +55,9 @@ title: Vulink Instruments
   <summary>Controls</summary>
 
 ```js
+// TODO: Note that Air temperature measurements are available but one site is not reporting,
+// and so they are not represented here.
+
 const timelist = [
   ["1 Week", 7],
   ["2 Weeks", 14],

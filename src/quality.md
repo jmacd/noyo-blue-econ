@@ -1,6 +1,6 @@
 ---
 toc: false
-title: Key Parameters
+title: Water Quality
 ---
 
 <style>
@@ -69,27 +69,31 @@ const sites_list = [
      name: "B-Dock",
 	 short: "bdock",
 	 where: "Surface",
-	 color: "red"
+	 variables: ["AT500_Surface.Specific Conductivity.µS/cm", "AT500_Surface.DO.mg/L", "AT500_Surface.Temperature.C", "AT500_Surface.Density.g/cm³", "AT500_Surface.Salinity.psu", "AT500_Surface.Pressure.psi"]
    },
    {
      name: "The Wharf",
 	 short: "silver",
-	 where: "Surface"
+	 where: "Surface",
+	 variables: ["AT500_Surface.Temperature.C"]
    },
    {
      name: "Princess Seafood",
 	 short: "princess",
-	 where: "Surface"
+	 where: "Surface",
+	 variables: ["AT500_Surface.Temperature.C"]
    },
    {
      name: "Field Station Surface",
 	 short: "fieldstation",
-	 where: "Surface"
+	 where: "Surface",
+	 variables: ["AT500_Surface.Temperature.C"]
    },
    {
      name: "Field Station Bottom",
 	 short: "fieldstation",
-	 where: "Bottom"
+	 where: "Bottom",
+	 variables: ["AT500_Bottom.Temperature.C"]
    },
 ];
 
@@ -136,13 +140,6 @@ const now = new Date().getTime();
 
 // 24 days, 3600 secs/hour, 1000 ms/sec
 const begin = now - timepick * 24 * 3600 * 1000;
-
-function s2q(site) {
-  const where = site.where;
-  const short = site.short;
-  const sitename = site.name;
-  return `SELECT '${sitename}' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
-}
 ```
 
 ```js
@@ -157,6 +154,14 @@ var duck = await DuckDBClient.of({
 ```
 
 ```js
+
+function s2q(site) {
+  const where = site.where;
+  const short = site.short;
+  const sitename = site.name;
+  return `SELECT '${sitename}' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+}
+
 const bysite = sites.map(site => {
    const q = s2q(site);
    console.log("query is", q);
