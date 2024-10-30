@@ -51,6 +51,8 @@ title: Key Parameters
 </div>
 
 
+<details>
+  <summary>Controls</summary>
 
 ```js
 const timelist = [
@@ -66,38 +68,48 @@ const sites_list = [
    {
      name: "B-Dock",
 	 short: "bdock",
-	 where: "Surface"
+	 where: "Surface",
+	 color: "red"
    },
    {
      name: "The Wharf",
 	 short: "silver",
-	 where: "Surface"
+	 where: "Surface",
+	 color: "blue"
    },
    {
      name: "Princess Seafood",
 	 short: "princess",
-	 where: "Surface"
+	 where: "Surface",
+	 color: "yellow"
    },
    {
      name: "Field Station Surface",
 	 short: "fieldstation",
-	 where: "Surface"
+	 where: "Surface",
+	 color: "orange",
    },
    {
      name: "Field Station Bottom",
 	 short: "fieldstation",
-	 where: "Bottom"
+	 where: "Bottom",
+	 color: "violet"
    },
 ];
-```
 
-```js
 const timepick = view(
   Inputs.radio(
     new Map(timelist),
     {
 		value: 7, 
 		label: "Time range", 
+		format: (t) => {
+	    return html`<span style="
+          font-size: 1.5vw;
+          font-weight: 300;
+          line-height: 1;
+        ">${t[0]}</span>`
+	  }
    	}
   )
 );
@@ -108,11 +120,19 @@ const sites = view(
     {
       value: sites_list, 
       label: "Site",
-      format: (t) => t.name,
+      format: (t) => {
+	    return html`<span style="
+          font-size: 1.5vw;
+          font-weight: 300;
+          line-height: 1;
+        ">${t.name}</span>`
+	  }
     }
   )
 );
 ```
+
+</details>
 
 ```js
 // Timestamps are in milliseconds
@@ -125,7 +145,8 @@ function s2q(site) {
   const where = site.where;
   const short = site.short;
   const sitename = site.name;
-  return `SELECT '${sitename}.' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+  const color = site.color;
+  return `SELECT '${sitename}' as SITE, '${color}' as COLOR, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
 }
 ```
 
@@ -147,10 +168,6 @@ const bysite = sites.map(site => {
    return duck.query(q);
 });
 const results = await Promise.all(bysite);
-```
-
-```js
-Inputs.table(results[0]);
 ```
 
 ```js
