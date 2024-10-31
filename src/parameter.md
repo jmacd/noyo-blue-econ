@@ -209,4 +209,3 @@ var temperature = results.map(result => {
     }))
   }</div>
 </div>
-

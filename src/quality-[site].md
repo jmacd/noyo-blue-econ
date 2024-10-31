@@ -47,9 +47,10 @@ title: Water Quality
 
 <div class="hero">
 	<h1>Noyo Harbor Blue Economy</h1>
-	<h2>Key Parameters</h2>
+	<h2>Quality detail</h2>
 </div>
 
+The current product is ${observable.params.site}.
 
 <details>
   <summary>Controls</summary>
@@ -114,22 +115,6 @@ const timepick = view(
   )
 );
 
-const sites = view(
-  Inputs.checkbox(
-    sites_list,
-    {
-      value: sites_list, 
-      label: "Site",
-      format: (t) => {
-	    return html`<span style="
-          font-size: 1.5vw;
-          font-weight: 300;
-          line-height: 1;
-        ">${t.name}</span>`
-	  }
-    }
-  )
-);
 ```
 
 </details>
@@ -159,59 +144,61 @@ function s2q(site) {
   const where = site.where;
   const short = site.short;
   const sitename = site.name;
-  return `SELECT '${sitename}' as SITE, "AT500_${where}.Salinity.psu" as SAL, "AT500_${where}.DO.mg/L" as DO, "AT500_${where}.Temperature.C" as TEMP, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
+  var varsas = "";
+  var vnum = 0;
+  for (const v of site.variables) {
+	if (varsas.length != 0) {
+		varsas = varsas.concat(", ");
+	}
+	vnum += 1;
+	varsas = varsas.concat(`"${v}" as VAR${vnum}`)
+  }
+  return `SELECT '${sitename}' as SITE, ${varsas}, Timestamp*1000 as UTC from ${short} where UTC >= ${begin}`;
 }
 
-const bysite = sites.map(site => {
+const bysite = sites_list.map(site => {
    const q = s2q(site);
    console.log("query is", q);
    return duck.query(q);
 });
+
 const results = await Promise.all(bysite);
 ```
 
 ```js
-var salinity = results.map(result => {
-	return Plot.lineY(result, {x: "UTC", y: "SAL", stroke: "SITE"});
-});
-var disolved = results.map(result => {
-	return Plot.lineY(result, {x: "UTC", y: "DO", stroke: "SITE"});
-});
-var temperature = results.map(result => {
-	return Plot.lineY(result, {x: "UTC", y: "TEMP", stroke: "SITE"});
-});
+function sitePlot(width, sitedata, num) {
+	return Plot.plot({
+      title: "Yoyo",
+      width,
+	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
+      y: {grid: true, label: "hello", domain: [0, 10]},
+      color: {legend: true},
+  	  marks: [Plot.lineY(sitedata, {x: "UTC", y: `VAR${num}`, stroke: "SITE"})],
+    });
+}
 ```
 
 <div class="grid grid-cols-1">
   <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Water Temperature",
-      width,
-	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
-      y: {grid: true, label: "Temperature (C)", domain: [0, 30]},
-      color: {legend: true},
-      marks: temperature
-    }))
+    resize((width) => sitePlot(width, results[0], 1))
   }</div>
   <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Disolved Oxygen",
-      width,
-	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
-      y: {grid: true, label: "Disolved Oxygen (mg/L)", domain: [0, 15]},
-      color: {legend: true},
-      marks: disolved
-    }))
+    resize((width) => sitePlot(width, results[0], 2))
   }</div>
   <div class="card">${
-    resize((width) => Plot.plot({
-      title: "Salinity",
-      width,
-	  x: {grid: true, type: "time", label: "Date", domain: [begin, now]},
-      y: {grid: true, label: "Salinity (psu)", domain: [0, 35]},
-      color: {legend: true},
-      marks: salinity
-    }))
+    resize((width) => sitePlot(width, results[0], 3))
+  }</div>
+  <div class="card">${
+    resize((width) => sitePlot(width, results[0], 4))
+  }</div>
+  <div class="card">${
+    resize((width) => sitePlot(width, results[0], 5))
+  }</div>
+  <div class="card">${
+    resize((width) => sitePlot(width, results[0], 6))
+  }</div>
+  <div class="card">${
+    resize((width) => sitePlot(width, results[0], 7))
   }</div>
 </div>
 

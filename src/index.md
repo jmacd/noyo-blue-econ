@@ -65,8 +65,8 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 })
   .addTo(map);
 
-L.circle([39.42768783218275, -123.80584629151588], {radius: 20}).bindPopup("Princess").addTo(map);
-L.circle([39.42630383307301, -123.80507914592623], {radius: 20}).bindPopup("Silvers").addTo(map);
+L.circle([39.42768783218275, -123.80584629151588], {radius: 20}).bindPopup("Princess Seafood").addTo(map);
+L.circle([39.42630383307301, -123.80507914592623], {radius: 20}).bindPopup("The Wharf").addTo(map);
 L.circle([39.42359794726219, -123.80380240755608], {radius: 20}).bindPopup("Field Station").addTo(map);
-L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B Dock").addTo(map);
+L.circle([39.42398791346205, -123.80214663996874], {radius: 20}).bindPopup("B-Dock").addTo(map);
 ```

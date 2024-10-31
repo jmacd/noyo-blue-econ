@@ -3,21 +3,37 @@ export default {
   // The project’s title; used in the sidebar and webpage titles.
   title: "Noyo Harbor",
 
-  // The pages and sections in the sidebar. If you don’t specify this option,
-  // all pages will be listed in alphabetical order. Listing pages explicitly
-  // lets you organize them into sections and have unlisted pages.
-  // pages: [
-  //   {
-  //     name: "Examples",
-  //     pages: [
-  //       {name: "Dashboard", path: "/example-dashboard"},
-  //       {name: "Report", path: "/example-report"}
-  //     ]
-  //   }
-  // ],
+  pages: [
+    {
+      name: "Overview",
+      pages: [
+        {name: "Parameter", path: "/parameter"},
+        {name: "Vulink", path: "/vulink"}
+      ]
+    },
+    {
+      name: "Detail",
+      open: false,
+      pages: [
+        {name: "B-Dock", path: "/quality-bdock.md"},
+        {name: "Princess Seafood", path: "/quality-princess.md"},
+        {name: "The Wharf", path: "/quality-wharf.md"},
+        {name: "Field Station Surface", path: "/quality-fieldstationsurface.md"},
+        {name: "Field Station Bottom", path: "/quality-fieldstationbottom.md"},
+      ]
+    }
+  ],
+
+    dynamicPaths: [
+    "/quality-bdock.md",
+    "/quality-princess.md",
+    "/quality-wharf.md",
+    "/quality-fieldstationsurface.md",
+    "/quality-fieldstationbottom.md"
+  ],
 
   // Some additional configuration options and their defaults:
-  theme: "default", // try "light", "dark", "slate", etc.
+  theme: "slate", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
   // toc: true, // whether to show the table of contents
