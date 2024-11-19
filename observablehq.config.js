@@ -15,21 +15,9 @@ export default {
       name: "Detail",
       open: false,
       pages: [
-        {name: "B-Dock", path: "/quality-bdock.md"},
-        {name: "Princess Seafood", path: "/quality-princess.md"},
-        {name: "The Wharf", path: "/quality-wharf.md"},
-        {name: "Field Station Surface", path: "/quality-fieldstationsurface.md"},
-        {name: "Field Station Bottom", path: "/quality-fieldstationbottom.md"},
+          {name: "Field Station", path: "/single-fieldstation"},
       ]
     }
-  ],
-
-    dynamicPaths: [
-    "/quality-bdock.md",
-    "/quality-princess.md",
-    "/quality-wharf.md",
-    "/quality-fieldstationsurface.md",
-    "/quality-fieldstationbottom.md"
   ],
 
   // Some additional configuration options and their defaults:
