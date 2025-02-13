@@ -7,15 +7,18 @@ export default {
     {
       name: "Overview",
       pages: [
-        {name: "Parameter", path: "/parameter"},
-        {name: "Vulink", path: "/vulink"}
+//        {name: "Parameter", path: "/parameter"},
+//        {name: "Vulink", path: "/vulink"}
       ]
     },
     {
       name: "Detail",
-      open: false,
+      open: true,
       pages: [
-          {name: "Field Station", path: "/single-fieldstation"},
+          {name: "Field Station", path: "/data/FieldStation"},
+          {name: "BDock", path: "/data/BDock"},
+          {name: "Silver", path: "/data/Silver"},
+          {name: "Princess", path: "/data/Princess"},
       ]
     }
   ],
