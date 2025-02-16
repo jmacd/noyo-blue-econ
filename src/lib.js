@@ -19,3 +19,20 @@ export async function timepicker() {
     }
   )
 }
+
+export function timerange(pick) {
+    var res;
+    if (pick <= 30) {
+        res = "1h";
+    } else if (pick <= 60) {
+        res = "2h";
+    } else if (pick <= 90) {
+        res = "4h";
+    } else if (pick <= 180) {
+        res = "12h";
+    } else {
+        res = "24h";
+    }
+    return res;
+}
+
