@@ -14,7 +14,7 @@ export async function timepicker() {
   return Inputs.radio(
     new Map(timelist),
     {
-                value: 7, 
+                value: 30, 
                 label: "Time range", 
     }
   )
