@@ -7,8 +7,8 @@ export default {
     {
       name: "Overview",
       pages: [
-//        {name: "Parameter", path: "/parameter"},
-//        {name: "Vulink", path: "/vulink"}
+          {name: "Disolved Oxygen", path: "/data/DO"},
+          {name: "Salinity", path: "/data/Salinity"},
       ]
     },
     {
