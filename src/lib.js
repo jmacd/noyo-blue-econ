@@ -36,3 +36,17 @@ export function timerange(pick) {
     return res;
 }
 
+export function legendName(i, n, u) {
+    // Note: n = name, is in the plot title
+    //       u = unit, is on the y-axis
+    //       i = instrument, this has <location>.<model> and we only use location
+    var n2 = i.split(".");
+    return n2[0] + " " + n2[1].split("_")[1]
+}
+
+export function plotName(n) {
+    if (n == "DO") {
+	return "Disolved Oxygen";
+    }
+    return n;
+}
