@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash -x
 
 export RUST_BACKTRACE=1
 
