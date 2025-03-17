@@ -5,7 +5,7 @@ export RUST_BACKTRACE=1
 DIR=$(pwd)
 INBOX=${DIR}/history
 POND=${HOME}/POND
-EXE="docker run duckpond:latest -e POND=${POND}"
+EXE="docker run -e POND=/pond -v ${POND}:/pond duckpond:latest"
 
 rm -rf ${INBOX}
 mkdir ${INBOX}
