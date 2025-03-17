@@ -4,7 +4,7 @@ export RUST_BACKTRACE=1
 
 DIR=$(pwd)
 INBOX=${DIR}/history
-EXE="docker run -e POND=/pond/POND -v ${HOME}:/pond ${DIR}:/src duckpond:latest"
+EXE="docker run -e POND=/pond/POND -v ${HOME}:/pond -v ${DIR}:/src duckpond:latest"
 
 echo ---- init
 ${EXE} init || exit 1
