@@ -3,4 +3,4 @@ kind: Inbox
 name: laketechcsv
 desc: Dropbox for testing OTel JSON file inputs.
 spec:
-  pattern: /home/jmacd/noyo-blue-econ/history/**
+  pattern: /src/history/**
