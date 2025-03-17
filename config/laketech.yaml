@@ -1,0 +1,132 @@
+apiVersion: github.com/jmacd/duckpond/v1
+kind: Derive
+name: csvextract
+desc: Extract from CSV
+spec:
+  # Note: EPOCH(Timestamp::TIMESTAMPTZ) as T,
+  # Converts a local-time to a UTC time in the
+  # current timezone.  Works in tests!  Doesn't
+  # work through API calls, oddly.  The expression
+  # below is a monster, but works.  Something is super
+  # fishy about SQL and timestamps.
+
+  collections:
+  - pattern: "/Inbox/laketechcsv/*surface*.csv"
+    name: SurfaceMeasurements
+    query: >
+      
+      WITH INPUT as
+       (SELECT
+        EPOCH(MAKE_TIMESTAMPTZ(EXTRACT('year' FROM Timestamp), EXTRACT('month' FROM Timestamp), EXTRACT('day' FROM Timestamp), EXTRACT('hour' FROM Timestamp), EXTRACT('minute' FROM Timestamp), EXTRACT('second' FROM Timestamp))) as T,
+        "Series Name" as SN,
+        Location as L,
+        Parameter as P,
+        Value as V,
+        "Offset" as O
+        FROM read_csv('$1')
+       ),
+      TIMES AS (SELECT DISTINCT T FROM INPUT),
+      PH    AS (SELECT * FROM INPUT WHERE SN = 'Surface pH'),
+      TEMP  AS (SELECT * FROM INPUT WHERE SN = 'Surface Temp'),
+      CHLA  AS (SELECT * FROM INPUT WHERE SN = 'Surface Chl-a'),
+      DOX   AS (SELECT * FROM INPUT WHERE SN = 'Surface DO'),
+      SAL   AS (SELECT * FROM INPUT WHERE SN = 'Surface Salinity'),
+      DEPTH AS (SELECT * FROM INPUT WHERE SN = 'Depth')
+      
+      SELECT
+      
+      TIMES.T AS "Timestamp",
+      PH.V    AS "AT500_Surface.pH.pH",
+      TEMP.V  AS "AT500_Surface.Temperature.C",
+      CHLA.V  AS "AT500_Surface.Chl-a.µg/L",
+      DOX.V   AS "AT500_Surface.DO.mg/L",
+      SAL.V   AS "AT500_Surface.Salinity.psu",
+      (
+      DEPTH.V - DEPTH.O
+      ) AS "AT500_Surface.Depth.m"
+      
+      FROM
+      
+      TIMES
+      LEFT JOIN PH ON TIMES.T = PH.T
+      LEFT JOIN TEMP ON TIMES.T = TEMP.T
+      LEFT JOIN CHLA ON TIMES.T = CHLA.T
+      LEFT JOIN DOX ON TIMES.T = DOX.T
+      LEFT JOIN SAL ON TIMES.T = SAL.T
+      LEFT JOIN DEPTH ON TIMES.T = DEPTH.T
+      
+      ORDER BY TIMES.T
+
+  - pattern: "/Inbox/laketechcsv/*bottom*.csv"
+    name: BottomMeasurements
+    query: >
+      
+      WITH INPUT as
+       (SELECT
+        EPOCH(MAKE_TIMESTAMPTZ(EXTRACT('year' FROM Timestamp), EXTRACT('month' FROM Timestamp), EXTRACT('day' FROM Timestamp), EXTRACT('hour' FROM Timestamp), EXTRACT('minute' FROM Timestamp), EXTRACT('second' FROM Timestamp))) as T,
+        "Series Name" as SN,
+        Location as L,
+        Parameter as P,
+        Value as V,
+        "Offset" as O
+        FROM read_csv('$1')
+       ),
+      TIMES AS (SELECT DISTINCT T FROM INPUT),
+      TEMP  AS (SELECT * FROM INPUT WHERE SN = 'Bottom Temp'),
+      DOX   AS (SELECT * FROM INPUT WHERE SN = 'Bottom DO'),
+      SAL   AS (SELECT * FROM INPUT WHERE SN = 'Bottom Salinity'),
+      DEPTH AS (SELECT * FROM INPUT WHERE SN = 'Depth')
+      
+      SELECT
+      
+      TIMES.T AS "Timestamp",
+      TEMP.V  AS "AT500_Bottom.Temperature.C",
+      DOX.V   AS "AT500_Bottom.DO.mg/L",
+      SAL.V   AS "AT500_Bottom.Salinity.psu",
+      (
+      DEPTH.V - DEPTH.O
+      ) AS "AT500_Bottom.Depth.m"
+      
+      FROM
+      
+      TIMES
+      LEFT JOIN TEMP ON TIMES.T = TEMP.T
+      LEFT JOIN DOX ON TIMES.T = DOX.T
+      LEFT JOIN SAL ON TIMES.T = SAL.T
+      LEFT JOIN DEPTH ON TIMES.T = DEPTH.T
+      
+      ORDER BY TIMES.T
+
+  - pattern: "/Inbox/laketechcsv/*vulink*.csv"
+    name: VulinkMeasurements
+    query: >
+      
+      WITH INPUT as
+       (SELECT
+        EPOCH(MAKE_TIMESTAMPTZ(EXTRACT('year' FROM Timestamp), EXTRACT('month' FROM Timestamp), EXTRACT('day' FROM Timestamp), EXTRACT('hour' FROM Timestamp), EXTRACT('minute' FROM Timestamp), EXTRACT('second' FROM Timestamp))) as T,
+        "Series Name" as SN,
+        Location as L,
+        Parameter as P,
+        Value as V,
+        "Offset" as O
+        FROM read_csv('$1')
+       ),
+      TIMES AS (SELECT DISTINCT T FROM INPUT),
+      BATT  AS (SELECT * FROM INPUT WHERE SN = 'Battery Level'),
+      BARO  AS (SELECT * FROM INPUT WHERE SN = 'Baro')
+
+      SELECT
+      
+      TIMES.T AS "Timestamp",
+      BATT.V  AS "Vulink.Battery Level.%",
+      BARO.V  AS "Vulink.Baro.psi"
+      
+      FROM
+      
+      TIMES
+      LEFT JOIN BATT ON TIMES.T = BATT.T
+      LEFT JOIN BARO ON TIMES.T = BARO.T
+      
+      ORDER BY TIMES.T
+
+

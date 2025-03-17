@@ -8,6 +8,8 @@ yarn dev
 
 Then visit <http://localhost:3000> to preview your project.
 
+This has been published as <https://noyo-harbor-blue-economy.observablehq.cloud/feasibility-study/>.
+
 For more, see <https://observablehq.com/framework/getting-started>.
 
 ## Project structure
