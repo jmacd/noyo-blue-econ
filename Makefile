@@ -1,5 +1,6 @@
 all:
 
 cp:
-	zstd -d duckpond.tar.zst
+	@rm duckpond.tar
+	@zstd -d duckpond.tar.zst
 	sudo docker load -i ./duckpond.tar
