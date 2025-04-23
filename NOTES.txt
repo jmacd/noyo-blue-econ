@@ -1,8 +1,50 @@
-Temperature,
 Salinity,
 Disolved Ox.
+Water Temperature
 
 
 1 summary with those three parameters, radio button for sites
 1 parameter, multiple sites
 1 site, multiple parameters
+
+
+
+---
+
+Note that Salnity and Temperature are one. (Technically temp and conductivity.)
+
+New parameters for the overview
+
+- Barometric pressure
+- Water temperature
+- Depth: sensor to surface
+- Tide: depth plus site-specific offset so they average.
+
+Original parameters are:
+
+Every Vulink:
+- Battery (operator)
+- Air Temperature (not too important)
+- Barometric pressure (important)
+- Elevation (how is this set, or is it computed - from GPS?)
+
+Every AT500:
+- Disolved Ox
+- Salinity
+- Water temp (built-in)
+- Water pressure (built-in)
+
+Princess:
+- standard
+
+Silver:
+- standard
+
+BDock:
+- standard
+
+Field Station:
+- standard (at both surface and bottom)
+- Chloro-A (Surface)
+- pH (Surface)
+
