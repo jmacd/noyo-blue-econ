@@ -8,6 +8,7 @@ export const timelist = [
   ["3 Months", 90],
   ["6 Months", 180],
   ["12 Months", 365],
+  ["18 Months", 550],
 ];
 
 export async function timepicker() {
@@ -33,6 +34,7 @@ export function timerange(pick) {
     } else {
         res = "24h";
     }
+    console.log("RES", res)
     return res;
 }
 

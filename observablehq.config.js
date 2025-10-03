@@ -9,13 +9,13 @@ export default {
       pages: [
           {name: "Disolved Oxygen", path: "/data/DO"},
           {name: "Salinity", path: "/data/Salinity"},
+          {name: "Water Temperature", path: "/data/Temperature"},
       ]
     },
     {
       name: "Detail",
       open: true,
       pages: [
-          {name: "Field Station", path: "/data/FieldStation"},
           {name: "BDock", path: "/data/BDock"},
           {name: "Silver", path: "/data/Silver"},
           {name: "Princess", path: "/data/Princess"},
