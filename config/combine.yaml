@@ -1,0 +1,45 @@
+entries:
+  - name: "BDock"
+    factory: "sql-derived-series"
+    config:
+      patterns:
+        vulink: "/hydrovu/devices/**/BDockVulink.series"
+        at500: "/hydrovu/devices/**/BDockAT500.series"
+      query: |
+        SELECT 
+          COALESCE(vulink.timestamp, at500.timestamp) AS timestamp,
+          vulink.* EXCLUDE (timestamp),
+          at500.* EXCLUDE (timestamp)
+        FROM vulink 
+        FULL OUTER JOIN at500 ON vulink.timestamp = at500.timestamp
+        ORDER BY timestamp
+
+  - name: "Silver"  
+    factory: "sql-derived-series"
+    config:
+      patterns:
+        vulink: "/hydrovu/devices/**/SilverVulink*.series"
+        at500: "/hydrovu/devices/**/SilverAT500.series"
+      query: |
+        SELECT 
+          COALESCE(vulink.timestamp, at500.timestamp) AS timestamp,
+          vulink.* EXCLUDE (timestamp),
+          at500.* EXCLUDE (timestamp)
+        FROM vulink
+        FULL OUTER JOIN at500 ON vulink.timestamp = at500.timestamp
+        ORDER BY timestamp
+
+  - name: "Princess"
+    factory: "sql-derived-series" 
+    config:
+      patterns:
+        vulink: "/hydrovu/devices/**/PrincessVulink.series"
+        at500: "/hydrovu/devices/**/PrincessAT500.series"
+      query: |
+        SELECT 
+          COALESCE(vulink.timestamp, at500.timestamp) AS timestamp,
+          vulink.* EXCLUDE (timestamp),
+          at500.* EXCLUDE (timestamp)
+        FROM vulink 
+        FULL OUTER JOIN at500 ON vulink.timestamp = at500.timestamp
+        ORDER BY timestamp

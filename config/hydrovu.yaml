@@ -1,11 +1,6 @@
-apiVersion: www.hydrovu.com/v1
-kind: HydroVu
-name: noyoharbor
-desc: Noyo Harbor Blue Economy
-spec:
-  key: "{{ key }}"
-  secret: "{{ secret }}"
-  devices:
+hydrovu_path: "/hydrovu"
+max_points_per_run: 10000
+devices:
   - name:  BDockVulink
     scope: Vulink
     id:    4990594334457856
@@ -35,3 +30,4 @@ spec:
   - name:  PrincessAT500
     scope: AT500_Surface
     id:    6187749627789312
+    
