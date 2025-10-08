@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 ROOT=$(dirname $(pwd)/$(dirname "$0"))
+
+echo ROOT is ${ROOT}
+
 CONFIG=${ROOT}/config
 POND=${ROOT}/pond
 EXE=pond
