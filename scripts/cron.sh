@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+set -i -x
+
 ROOT=$(dirname $(pwd)/$(dirname "$0"))
 
-cd ${ROOT} in cron.sh
+cd ${ROOT} 
 
 ./scripts/run.sh
 
