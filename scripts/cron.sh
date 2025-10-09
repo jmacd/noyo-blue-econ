@@ -19,7 +19,9 @@ WWW_ROOT="${WWW_ROOT:-/var/www/html}"
 # Ensure WWW_ROOT directory exists
 mkdir -p "${WWW_ROOT}"
 
-ROOT=$(dirname $(pwd)/$(dirname "$0"))
+# Get the absolute path to the script directory, then go up one level to repo root
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(dirname "${SCRIPT_DIR}")
 
 cd ${ROOT} 
 
