@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-ROOT=$(dirname $(pwd)/$(dirname "$0"))
+# Get the absolute path to the script directory, then go up one level to repo root
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(dirname "${SCRIPT_DIR}")
+
+cd ${ROOT} 
 
 echo ROOT is ${ROOT}
 
