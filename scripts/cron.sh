@@ -35,6 +35,13 @@ npx @observablehq/framework@latest build
 TIMESTAMP=$(date -u +"%Y%m%d-%H%M%S")
 DIST_NAME="noyo-harbor-${TIMESTAMP}"
 
+# Read the current symlink target to determine the old dist folder
+OLD_DIST=""
+if [[ -L "${WWW_ROOT}/noyo-harbor" ]]; then
+    OLD_DIST=$(readlink "${WWW_ROOT}/noyo-harbor")
+    echo "Found existing symlink pointing to: ${OLD_DIST}"
+fi
+
 # Move dist to timestamped directory in WWW_ROOT
 mv dist "${WWW_ROOT}/${DIST_NAME}"
 
@@ -46,3 +53,9 @@ ln -sf "${DIST_NAME}" "${TEMP_SYMLINK}"
 
 # Atomically replace the old symlink with the new one
 mv -fT "${TEMP_SYMLINK}" "${WWW_ROOT}/noyo-harbor"
+
+# Clean up the old distribution directory if it exists
+if [[ -n "${OLD_DIST}" && -d "${WWW_ROOT}/${OLD_DIST}" ]]; then
+    echo "Removing old distribution: ${WWW_ROOT}/${OLD_DIST}"
+    rm -rf "${WWW_ROOT}/${OLD_DIST}"
+fi
