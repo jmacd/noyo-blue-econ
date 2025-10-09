@@ -10,7 +10,7 @@ echo ROOT is ${ROOT}
 
 CONFIG=${ROOT}/config
 POND=${ROOT}/pond
-EXE=pond
+EXE=/home/jmacd/.cargo/bin/pond
 OUTDIR=${ROOT}/src/data
 
 export POND

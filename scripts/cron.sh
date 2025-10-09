@@ -2,6 +2,8 @@
 
 set -e -x
 
+source /home/jmacd/.bashrc.private
+
 # Validate required environment variables
 if [[ -z "${HYDRO_KEY_VALUE}" ]]; then
     echo "Error: HYDRO_KEY_VALUE environment variable is required" >&2
