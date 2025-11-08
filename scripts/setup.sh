@@ -8,9 +8,16 @@ OUTDIR=${ROOT}/src/data
 
 export POND
 
+
 ${EXE} init
 
-${EXE} hydrovu create ${CONFIG}/hydrovu.yaml
+${EXE} mkdir -p /etc/system.d
+
+${EXE} copy ${CONFIG}/data.md.tmpl /etc
+
+${EXE} mknod remote /etc/system.d/backup --config-path ${CONFIG}/backup.yaml
+
+${EXE} mknod hydrovu /etc/hydrovu --config-path ${CONFIG}/hydrovu.yaml
 
 ${EXE} mknod dynamic-dir /combined --config-path ${CONFIG}/combine.yaml
 

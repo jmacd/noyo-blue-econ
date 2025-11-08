@@ -15,4 +15,4 @@ OUTDIR=${ROOT}/src/data
 
 export POND
 
-${EXE} hydrovu run ${CONFIG}/hydrovu.yaml
+${EXE} run /etc/hydrovu collect
