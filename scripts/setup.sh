@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x -e
 
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(dirname "${SCRIPTS}")

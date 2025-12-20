@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e -x
-
 source /home/jmacd/.bashrc.private
 
 # Validate required environment variables
