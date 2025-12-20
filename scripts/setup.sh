@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
+set -x -e
 
-ROOT=$(dirname $(pwd)/$(dirname "$0"))
+ROOT=$(cd "$(dirname "$0")" && pwd)
 EXE=${ROOT}/scripts/pond.sh
 CONFIG=${ROOT}/config
+
+echo ROOT ${ROOT}
 
 mkdir pond || (echo "pond already exists"; exit 1)
 
