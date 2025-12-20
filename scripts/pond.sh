@@ -11,5 +11,5 @@ POND=${ROOT}/pond
 podman run -ti --rm \
        -v "${POND}:/pond" \
        -v "${OUTDIR}:/data" \
-       -e POND="${POND}" \
+       -e POND=/pond \
        "${IMAGE}" "$@"
