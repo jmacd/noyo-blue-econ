@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -x -e
 
-ROOT=$(cd "$(dirname "$0")" && pwd)
+SCRIPTS=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(dirname "${SCRIPTS}")
+
 EXE=${ROOT}/scripts/pond.sh
 CONFIG=${ROOT}/config
-
-echo ROOT ${ROOT}
 
 mkdir pond || (echo "pond already exists"; exit 1)
 

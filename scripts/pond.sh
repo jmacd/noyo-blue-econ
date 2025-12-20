@@ -2,7 +2,8 @@
 
 IMAGE=ghcr.io/jmacd/duckpond/duckpond:latest
 
-ROOT=$(cd "$(dirname "$0")" && pwd)
+SCRIPTS=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(dirname "${SCRIPTS}")
 
 OUTDIR=${ROOT}/src/data
 POND=${ROOT}/pond

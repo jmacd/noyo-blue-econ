@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-ROOT=$(cd "$(dirname "$0")" && pwd)
+SCRIPTS=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(dirname "${SCRIPTS}")
 EXE=${ROOT}/scripts/pond.sh
 
 ${EXE} run /etc/hydrovu collect
