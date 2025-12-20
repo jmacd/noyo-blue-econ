@@ -16,7 +16,8 @@ export default {
       name: "Detail",
       open: true,
       pages: [
-          {name: "BDock", path: "/data/BDock.html"},
+          {name: "Field Station", path: "/data/FieldStation.html"},
+          {name: "B-Dock", path: "/data/BDock.html"},
           {name: "Silver", path: "/data/Silver.html"},
           {name: "Princess", path: "/data/Princess.html"},
       ]

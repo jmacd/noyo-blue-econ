@@ -19,6 +19,8 @@ ${EXE} mknod remote /etc/system.d/backup --config-path ${CONFIG}/backup.yaml
 
 ${EXE} mknod hydrovu /etc/hydrovu --config-path ${CONFIG}/hydrovu.yaml
 
+${EXE} mknod column-rename /etc/hydro_rename --config-path ${CONFIG}/hrename.yaml
+
 ${EXE} mknod dynamic-dir /combined --config-path ${CONFIG}/combine.yaml
 
 ${EXE} mknod dynamic-dir /singled --config-path ${CONFIG}/single.yaml
