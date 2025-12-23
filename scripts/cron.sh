@@ -27,8 +27,6 @@ cd ${ROOT}
 
 ./scripts/run.sh
 
-rm -rf ./src/data
-
 ./scripts/export.sh
 
 npx @observablehq/framework@latest build

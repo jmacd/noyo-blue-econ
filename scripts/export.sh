@@ -3,6 +3,7 @@
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(dirname "${SCRIPTS}")
 EXE=${ROOT}/scripts/pond.sh
+OUTDIR=${ROOT}/src/data
 
 rm -rf ${OUTDIR}
 mkdir ${OUTDIR}
