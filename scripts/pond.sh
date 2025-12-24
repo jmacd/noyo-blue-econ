@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
 IMAGE=ghcr.io/jmacd/duckpond/duckpond:latest
+VOLUME=pond-data
 
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(dirname "${SCRIPTS}")
 
 podman run -ti --rm \
+       -v "${VOLUME}:/pond" \
        -v "${ROOT}:/root" \
-       -e POND=/root/pond \
+       -e POND=/pond \
        -e HYDRO_KEY_ID=${HYDRO_KEY_ID} \
        -e HYDRO_KEY_VALUE=${HYDRO_KEY_VALUE} \
        -e R2_ENDPOINT=${R2_ENDPOINT} \

@@ -5,6 +5,13 @@ ROOT=$(dirname "${SCRIPTS}")
 
 EXE=${ROOT}/scripts/pond.sh
 
+# Ensure the podman volume exists
+VOLUME=pond-data
+if ! podman volume exists "${VOLUME}" 2>/dev/null; then
+    echo "Creating podman volume: ${VOLUME}"
+    podman volume create "${VOLUME}"
+fi
+
 mkdir pond || (echo "pond already exists"; exit 1)
 
 ${EXE} init
