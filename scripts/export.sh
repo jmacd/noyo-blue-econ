@@ -26,5 +26,5 @@ ${EXE} export --pattern '/reduced/single_param/*/*.series' --pattern '/templates
 # Site detail (by site pages)
 ${EXE} export --pattern '/reduced/single_site/*/*.series' --pattern '/templates/sites/*' --dir /root/dist --temporal "year,month"
 
-# Index page
-${EXE} export --pattern '/templates/index/*' --dir /root/dist
+# Index page (static, no temporal partitioning)
+${EXE} export --pattern '/templates/index/*' --pattern '/templates/page/*' --dir /root/dist
