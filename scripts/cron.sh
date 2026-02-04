@@ -29,8 +29,6 @@ cd ${ROOT}
 
 ./scripts/export.sh
 
-npx @observablehq/framework@latest build
-
 # Generate timestamp-based directory name (UTC)
 TIMESTAMP=$(date -u +"%Y%m%d-%H%M%S")
 DIST_NAME="noyo-harbor-${TIMESTAMP}"
