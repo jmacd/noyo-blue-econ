@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-IMAGE=ghcr.io/jmacd/duckpond/duckpond:latest
+IMAGE=ghcr.io/jmacd/duckpond/duckpond:latest-amd64
 VOLUME=pond-data
 
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
 ROOT=$(dirname "${SCRIPTS}")
 
-podman run -ti --rm \
+podman run --pull=always -ti --rm \
        -v "${VOLUME}:/pond" \
        -v "${ROOT}:/root" \
        -e POND=/pond \
