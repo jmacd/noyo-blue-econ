@@ -2,20 +2,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": "rimraf docs/.observablehq/cache",
-    "build": "rimraf dist && observable build",
-    "dev": "observable preview",
-    "deploy": "observable deploy",
-    "observable": "observable"
+    "clean": "rm -rf dist",
+    "dev": "npx vite dist --port 5173",
+    "preview": "npx vite dist --port 5173"
   },
-  "dependencies": {
-    "@observablehq/framework": "^1.12.0",
-    "d3-dsv": "^3.0.1",
-    "d3-time-format": "^4.1.0",
-    "parquet-wasm": "^0.6.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "rimraf": "^5.0.5"
+    "vite": "^5.0.0"
   },
   "engines": {
     "node": ">=18"

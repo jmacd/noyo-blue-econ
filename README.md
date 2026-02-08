@@ -1,55 +1,52 @@
 # Noyo Harbor
 
-This is an [Observable Framework](https://observablehq.com/framework) project. To start the local preview server, run:
+This is a static HTML site for the Noyo Harbor Blue Economy water quality monitoring project.
 
+The site is generated using **DuckPond templates** (Tera) with D3.js and Observable Plot for visualizations.
+
+## Local Development
+
+To preview the site locally:
+
+```bash
+npm run dev
 ```
-yarn dev
-```
 
-Then visit <http://localhost:3000> to preview your project.
+Then visit <http://localhost:5173> to preview your project.
 
-This has been published as <https://noyo-harbor-blue-economy.observablehq.cloud/feasibility-study/>.
+## Production Deployment
 
-For more, see <https://observablehq.com/framework/getting-started>.
+The site runs on a cron job that:
+1. Collects data from HydroVu sensors (`scripts/run.sh`)
+2. Exports data and renders templates to static HTML (`scripts/export.sh`)
+3. Deploys to web server (`scripts/cron.sh`)
+
+Published at: <https://noyo-harbor-blue-economy.observablehq.cloud/feasibility-study/>
 
 ## Project structure
 
-A typical Framework project looks like this:
-
-```ini
-.
-├─ docs
-│  ├─ components
-│  │  └─ timeline.js           # an importable module
-│  ├─ data
-│  │  ├─ launches.csv.js       # a data loader
-│  │  └─ events.json           # a static data file
-│  ├─ example-dashboard.md     # a page
-│  ├─ example-report.md        # another page
-│  └─ index.md                 # the home page
-├─ .gitignore
-├─ observablehq.config.js      # the project config file
-├─ package.json
-└─ README.md
 ```
-
-**`docs`** - This is the “source root” — where your source files live. Pages go here. Each page is a Markdown file. Observable Framework uses [file-based routing](https://observablehq.com/framework/routing), which means that the name of the file controls where the page is served. You can create as many pages as you like. Use folders to organize your pages.
-
-**`docs/index.md`** - This is the home page for your site. You can have as many additional pages as you’d like, but you should always have a home page, too.
-
-**`docs/data`** - You can put [data loaders](https://observablehq.com/framework/loaders) or static data files anywhere in your source root, but we recommend putting them here.
-
-**`docs/components`** - You can put shared [JavaScript modules](https://observablehq.com/framework/javascript/imports) anywhere in your source root, but we recommend putting them here. This helps you pull code out of Markdown files and into JavaScript modules, making it easier to reuse code across pages, write tests and run linters, and even share code with vanilla web applications.
-
-**`observablehq.config.js`** - This is the [project configuration](https://observablehq.com/framework/config) file, such as the pages and sections in the sidebar navigation, and the project’s title.
+.
+├─ src/
+│  ├─ data.html.tmpl       # Template for data pages (by param/site)
+│  ├─ index.html.tmpl      # Template for home page
+│  ├─ page.html.tmpl       # Sidebar navigation template
+│  ├─ lib.js               # Shared JavaScript (DuckDB, Plot)
+│  ├─ style.css            # Shared styles
+│  └─ template.yaml        # Template factory configuration
+├─ scripts/
+│  ├─ cron.sh              # Main cron entry point
+│  ├─ run.sh               # Data collection
+│  ├─ export.sh            # Export data + render templates
+│  └─ pond.sh              # DuckPond container wrapper
+├─ pond/                   # DuckPond data (local development)
+└─ dist/                   # Generated static site
+```
 
 ## Command reference
 
 | Command           | Description                                              |
 | ----------------- | -------------------------------------------------------- |
-| `yarn install`            | Install or reinstall dependencies                        |
-| `yarn dev`        | Start local preview server                               |
-| `yarn build`      | Build your static site, generating `./dist`              |
-| `yarn deploy`     | Deploy your project to Observable                        |
-| `yarn clean`      | Clear the local data loader cache                        |
-| `yarn observable` | Run commands like `observable help`                      |
+| `npm install`     | Install or reinstall dependencies                        |
+| `npm run dev`     | Start local preview server (serves dist/)                |
+| `npm run clean`   | Remove dist/ directory                                   |

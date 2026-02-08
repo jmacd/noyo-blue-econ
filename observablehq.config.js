@@ -7,24 +7,25 @@ export default {
     {
       name: "Overview",
       pages: [
-          {name: "Disolved Oxygen", path: "/data/DO"},
-          {name: "Salinity", path: "/data/Salinity"},
+          {name: "Disolved Oxygen", path: "/data/DO.html"},
+          {name: "Salinity", path: "/data/Salinity.html"},
+          {name: "Water Temperature", path: "/data/Temperature.html"},
       ]
     },
     {
       name: "Detail",
       open: true,
       pages: [
-          {name: "Field Station", path: "/data/FieldStation"},
-          {name: "BDock", path: "/data/BDock"},
-          {name: "Silver", path: "/data/Silver"},
-          {name: "Princess", path: "/data/Princess"},
+          {name: "Field Station", path: "/data/FieldStation.html"},
+          {name: "B-Dock", path: "/data/BDock.html"},
+          {name: "Silver", path: "/data/Silver.html"},
+          {name: "Princess", path: "/data/Princess.html"},
       ]
     }
   ],
 
   // Some additional configuration options and their defaults:
-  theme: "slate", // try "light", "dark", "slate", etc.
+  theme: "light", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
   // toc: true, // whether to show the table of contents
