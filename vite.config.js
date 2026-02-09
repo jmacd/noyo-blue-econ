@@ -17,6 +17,7 @@ const buildRoot = resolve(__dirname, 'build')
 const inputs = findHtml(buildRoot)
 
 export default defineConfig({
+  base: '/noyo-harbor/',
   root: 'build',
   build: {
     outDir: resolve(__dirname, 'dist'),

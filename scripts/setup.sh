@@ -12,8 +12,6 @@ if ! podman volume exists "${VOLUME}" 2>/dev/null; then
     podman volume create "${VOLUME}"
 fi
 
-mkdir pond || (echo "pond already exists"; exit 1)
-
 ${EXE} init
 
 ${EXE} mkdir -p /etc/system.d
