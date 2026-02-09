@@ -1,0 +1,14 @@
+{
+  "name": "noyo-harbor-blue-economy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist build"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
