@@ -2,7 +2,7 @@
 
 ### Noyo Harbor
 
-- [Home](/)
+- [Home]({{ base_url /}})
 
 ### By Parameter
 

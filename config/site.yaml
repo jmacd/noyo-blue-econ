@@ -2,7 +2,7 @@ factory: sitegen
 
 site:
   title: "Noyo Harbor Blue Economy"
-  base_url: "/"
+  base_url: "/noyo-harbor/"
 
 exports:
   - name: "params"
