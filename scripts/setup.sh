@@ -20,9 +20,13 @@ ${EXE} mkdir -p /etc/system.d
 
 ${EXE} mkdir -p /laketech
 
-${EXE} copy /root/config/data.md.tmpl /etc
+${EXE} mkdir -p /etc/site
+
+${EXE} copy host:///root/site /etc/site
 
 ${EXE} copy host:///root/laketech /laketech/data
+
+${EXE} copy host:///root/hydrovu /hydrovu
 
 ${EXE} mknod remote /etc/system.d/backup --config-path /root/config/backup.yaml
 
@@ -36,4 +40,6 @@ ${EXE} mknod dynamic-dir /singled --config-path /root/config/single.yaml
 
 ${EXE} mknod dynamic-dir /reduced --config-path /root/config/reduce.yaml
 
-${EXE} mknod dynamic-dir /templates --config-path /root/config/template.yaml
+${EXE} mknod column-rename /etc/hydro_rename --config-path /root/config/hrename.yaml
+
+${EXE} mknod sitegen /etc/site.yaml --config-path /root/config/site.yaml
