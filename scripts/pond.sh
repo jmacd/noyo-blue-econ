@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE=ghcr.io/jmacd/duckpond/duckpond:nightly-amd64
+IMAGE=ghcr.io/jmacd/duckpond/duckpond:latest-amd64
 VOLUME=pond-data
 
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
