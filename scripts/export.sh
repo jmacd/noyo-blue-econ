@@ -12,6 +12,8 @@ mkdir ${ROOT}/build
 ${EXE} run /etc/site.yaml build /root/build
 
 # Vite bundles build/ into dist/ (runs on host, not in container)
+# The vite.config.js copy-data-dir plugin copies build/data/ → dist/data/
+# so parquet files are included in the output.
 cd ${ROOT}
 rm -rf dist
 npx vite build
