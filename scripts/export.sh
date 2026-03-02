@@ -9,7 +9,7 @@ EXE=${ROOT}/scripts/pond.sh
 rm -rf ${ROOT}/build
 mkdir ${ROOT}/build
 
-${EXE} run /etc/site.yaml build /root/build
+${EXE} run /system/etc/90-sitegen build /root/build
 
 # Vite bundles build/ into dist/ (runs on host, not in container)
 # The vite.config.js copy-data-dir plugin copies build/data/ → dist/data/
