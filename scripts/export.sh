@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 # Requires: npm install (once, for vite)
 
 SCRIPTS=$(cd "$(dirname "$0")" && pwd)
