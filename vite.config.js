@@ -13,11 +13,12 @@ function findHtml(dir, files = []) {
   return files
 }
 
+const base = '/noyo-harbor/'
 const buildRoot = resolve(__dirname, 'build')
 const inputs = findHtml(buildRoot)
 
 export default defineConfig({
-  base: '/noyo-harbor/',
+  base,
   root: 'build',
   // publicDir copies build/public/ → dist/ as-is (no hashing/processing).
   // Sitegen exports parquet data into build/data/; we symlink it so Vite
@@ -35,6 +36,18 @@ export default defineConfig({
     }),
   },
   plugins: [
+    // Sitegen generates HTML with base-prefixed absolute paths
+    // (e.g., /noyo-harbor/chart.js) so the output works as static files.
+    // Vite's build resolver doesn't strip the base prefix, so we do it
+    // here to map /noyo-harbor/X → build/X.
+    {
+      name: 'resolve-base-prefix',
+      resolveId(source) {
+        if (source.startsWith(base)) {
+          return resolve(buildRoot, source.slice(base.length))
+        }
+      },
+    },
     // Copy build/data/ → dist/data/ so parquet files are served alongside HTML
     {
       name: 'copy-data-dir',
